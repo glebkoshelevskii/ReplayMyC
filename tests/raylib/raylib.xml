@@ -1,0 +1,2799 @@
+<?xml version="1.0" ?>
+<api name="raylib" version="1.0">
+  <module header="raylib.h">
+    <struct name="Vector2">
+      <param name="x" type="float"/>
+      <param name="y" type="float"/>
+    </struct>
+    <struct name="Vector3">
+      <param name="x" type="float"/>
+      <param name="y" type="float"/>
+      <param name="z" type="float"/>
+    </struct>
+    <struct name="Vector4">
+      <param name="x" type="float"/>
+      <param name="y" type="float"/>
+      <param name="z" type="float"/>
+      <param name="w" type="float"/>
+    </struct>
+    <struct name="Matrix">
+      <param name="m0" type="float"/>
+      <param name="m4" type="float"/>
+      <param name="m8" type="float"/>
+      <param name="m12" type="float"/>
+      <param name="m1" type="float"/>
+      <param name="m5" type="float"/>
+      <param name="m9" type="float"/>
+      <param name="m13" type="float"/>
+      <param name="m2" type="float"/>
+      <param name="m6" type="float"/>
+      <param name="m10" type="float"/>
+      <param name="m14" type="float"/>
+      <param name="m3" type="float"/>
+      <param name="m7" type="float"/>
+      <param name="m11" type="float"/>
+      <param name="m15" type="float"/>
+    </struct>
+    <struct name="Color">
+      <param name="r" type="unsigned char"/>
+      <param name="g" type="unsigned char"/>
+      <param name="b" type="unsigned char"/>
+      <param name="a" type="unsigned char"/>
+    </struct>
+    <struct name="Rectangle">
+      <param name="x" type="float"/>
+      <param name="y" type="float"/>
+      <param name="width" type="float"/>
+      <param name="height" type="float"/>
+    </struct>
+    <struct name="Image">
+      <param name="data" type="void*" length="1 /* TODO: Specify length for data */"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="mipmaps" type="int"/>
+      <param name="format" type="int"/>
+    </struct>
+    <struct name="Texture">
+      <param name="id" type="unsigned int"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="mipmaps" type="int"/>
+      <param name="format" type="int"/>
+    </struct>
+    <struct name="RenderTexture">
+      <param name="id" type="unsigned int"/>
+      <param name="texture" type="Texture"/>
+      <param name="depth" type="Texture"/>
+    </struct>
+    <struct name="NPatchInfo">
+      <param name="source" type="Rectangle"/>
+      <param name="left" type="int"/>
+      <param name="top" type="int"/>
+      <param name="right" type="int"/>
+      <param name="bottom" type="int"/>
+      <param name="layout" type="int"/>
+    </struct>
+    <struct name="GlyphInfo">
+      <param name="value" type="int"/>
+      <param name="offsetX" type="int"/>
+      <param name="offsetY" type="int"/>
+      <param name="advanceX" type="int"/>
+      <param name="image" type="Image"/>
+    </struct>
+    <struct name="Font">
+      <param name="baseSize" type="int"/>
+      <param name="glyphCount" type="int"/>
+      <param name="glyphPadding" type="int"/>
+      <param name="texture" type="Texture2D"/>
+      <param name="recs" type="Rectangle*" length="1 /* TODO: Specify length for recs */"/>
+      <param name="glyphs" type="GlyphInfo*" length="1 /* TODO: Specify length for glyphs */"/>
+    </struct>
+    <struct name="Camera3D">
+      <param name="position" type="Vector3"/>
+      <param name="target" type="Vector3"/>
+      <param name="up" type="Vector3"/>
+      <param name="fovy" type="float"/>
+      <param name="projection" type="int"/>
+    </struct>
+    <struct name="Camera2D">
+      <param name="offset" type="Vector2"/>
+      <param name="target" type="Vector2"/>
+      <param name="rotation" type="float"/>
+      <param name="zoom" type="float"/>
+    </struct>
+    <struct name="Mesh">
+      <param name="vertexCount" type="int"/>
+      <param name="triangleCount" type="int"/>
+      <param name="vertices" type="float*" length="1 /* TODO: Specify length for vertices */"/>
+      <param name="texcoords" type="float*" length="1 /* TODO: Specify length for texcoords */"/>
+      <param name="texcoords2" type="float*" length="1 /* TODO: Specify length for texcoords2 */"/>
+      <param name="normals" type="float*" length="1 /* TODO: Specify length for normals */"/>
+      <param name="tangents" type="float*" length="1 /* TODO: Specify length for tangents */"/>
+      <param name="colors" type="unsigned char*" length="1 /* TODO: Specify length for colors */"/>
+      <param name="indices" type="unsigned short*" length="1 /* TODO: Specify length for indices */"/>
+      <param name="animVertices" type="float*" length="1 /* TODO: Specify length for animVertices */"/>
+      <param name="animNormals" type="float*" length="1 /* TODO: Specify length for animNormals */"/>
+      <param name="boneIds" type="unsigned char*" length="1 /* TODO: Specify length for boneIds */"/>
+      <param name="boneWeights" type="float*" length="1 /* TODO: Specify length for boneWeights */"/>
+      <param name="boneMatrices" type="Matrix*" length="1 /* TODO: Specify length for boneMatrices */"/>
+      <param name="boneCount" type="int"/>
+      <param name="vaoId" type="unsigned int"/>
+      <param name="vboId" type="unsigned int*" length="1 /* TODO: Specify length for vboId */"/>
+    </struct>
+    <struct name="Shader">
+      <param name="id" type="unsigned int"/>
+      <param name="locs" type="int*" length="1 /* TODO: Specify length for locs */"/>
+    </struct>
+    <struct name="MaterialMap">
+      <param name="texture" type="Texture2D"/>
+      <param name="color" type="Color"/>
+      <param name="value" type="float"/>
+    </struct>
+    <struct name="Material">
+      <param name="shader" type="Shader"/>
+      <param name="maps" type="MaterialMap*" length="1 /* TODO: Specify length for maps */"/>
+      <param name="params" type="float" length="4"/>
+    </struct>
+    <struct name="Transform">
+      <param name="translation" type="Vector3"/>
+      <param name="rotation" type="Quaternion"/>
+      <param name="scale" type="Vector3"/>
+    </struct>
+    <struct name="BoneInfo">
+      <param name="name" type="char" length="32"/>
+      <param name="parent" type="int"/>
+    </struct>
+    <struct name="Model">
+      <param name="transform" type="Matrix"/>
+      <param name="meshCount" type="int"/>
+      <param name="materialCount" type="int"/>
+      <param name="meshes" type="Mesh*" length="1 /* TODO: Specify length for meshes */"/>
+      <param name="materials" type="Material*" length="1 /* TODO: Specify length for materials */"/>
+      <param name="meshMaterial" type="int*" length="1 /* TODO: Specify length for meshMaterial */"/>
+      <param name="boneCount" type="int"/>
+      <param name="bones" type="BoneInfo*" length="1 /* TODO: Specify length for bones */"/>
+      <param name="bindPose" type="Transform*" length="1 /* TODO: Specify length for bindPose */"/>
+    </struct>
+    <struct name="ModelAnimation">
+      <param name="boneCount" type="int"/>
+      <param name="frameCount" type="int"/>
+      <param name="bones" type="BoneInfo*" length="1 /* TODO: Specify length for bones */"/>
+      <param name="name" type="char" length="32"/>
+    </struct>
+    <struct name="Ray">
+      <param name="position" type="Vector3"/>
+      <param name="direction" type="Vector3"/>
+    </struct>
+    <struct name="RayCollision">
+      <param name="hit" type="bool"/>
+      <param name="distance" type="float"/>
+      <param name="point" type="Vector3"/>
+      <param name="normal" type="Vector3"/>
+    </struct>
+    <struct name="BoundingBox">
+      <param name="min" type="Vector3"/>
+      <param name="max" type="Vector3"/>
+    </struct>
+    <struct name="Wave">
+      <param name="frameCount" type="unsigned int"/>
+      <param name="sampleRate" type="unsigned int"/>
+      <param name="sampleSize" type="unsigned int"/>
+      <param name="channels" type="unsigned int"/>
+      <param name="data" type="void*" length="1 /* TODO: Specify length for data */"/>
+    </struct>
+    <struct name="AudioStream">
+      <param name="buffer" type="rAudioBuffer*" length="1 /* TODO: Specify length for buffer */"/>
+      <param name="processor" type="rAudioProcessor*" length="1 /* TODO: Specify length for processor */"/>
+      <param name="sampleRate" type="unsigned int"/>
+      <param name="sampleSize" type="unsigned int"/>
+      <param name="channels" type="unsigned int"/>
+    </struct>
+    <struct name="Sound">
+      <param name="stream" type="AudioStream"/>
+      <param name="frameCount" type="unsigned int"/>
+    </struct>
+    <struct name="Music">
+      <param name="stream" type="AudioStream"/>
+      <param name="frameCount" type="unsigned int"/>
+      <param name="looping" type="bool"/>
+      <param name="ctxType" type="int"/>
+      <param name="ctxData" type="void*" length="1 /* TODO: Specify length for ctxData */"/>
+    </struct>
+    <struct name="VrDeviceInfo">
+      <param name="hResolution" type="int"/>
+      <param name="vResolution" type="int"/>
+      <param name="hScreenSize" type="float"/>
+      <param name="vScreenSize" type="float"/>
+      <param name="eyeToScreenDistance" type="float"/>
+      <param name="lensSeparationDistance" type="float"/>
+      <param name="interpupillaryDistance" type="float"/>
+      <param name="lensDistortionValues" type="float" length="4"/>
+      <param name="chromaAbCorrection" type="float" length="4"/>
+    </struct>
+    <struct name="VrStereoConfig">
+      <param name="projection" type="Matrix" length="2"/>
+      <param name="viewOffset" type="Matrix" length="2"/>
+      <param name="leftLensCenter" type="float" length="2"/>
+      <param name="rightLensCenter" type="float" length="2"/>
+      <param name="leftScreenCenter" type="float" length="2"/>
+      <param name="rightScreenCenter" type="float" length="2"/>
+      <param name="scale" type="float" length="2"/>
+      <param name="scaleIn" type="float" length="2"/>
+    </struct>
+    <struct name="FilePathList">
+      <param name="capacity" type="unsigned int"/>
+      <param name="count" type="unsigned int"/>
+    </struct>
+    <struct name="AutomationEvent">
+      <param name="frame" type="unsigned int"/>
+      <param name="type" type="unsigned int"/>
+      <param name="params" type="int" length="4"/>
+    </struct>
+    <struct name="AutomationEventList">
+      <param name="capacity" type="unsigned int"/>
+      <param name="count" type="unsigned int"/>
+      <param name="events" type="AutomationEvent*" length="count"/>
+    </struct>
+    <enum name="bool">
+      <param name="false" value="0"/>
+      <param name="true" value="!false"/>
+    </enum>
+    <enum name="ConfigFlags">
+      <param name="FLAG_VSYNC_HINT" value="0x00000040"/>
+      <param name="FLAG_FULLSCREEN_MODE" value="0x00000002"/>
+      <param name="FLAG_WINDOW_RESIZABLE" value="0x00000004"/>
+      <param name="FLAG_WINDOW_UNDECORATED" value="0x00000008"/>
+      <param name="FLAG_WINDOW_HIDDEN" value="0x00000080"/>
+      <param name="FLAG_WINDOW_MINIMIZED" value="0x00000200"/>
+      <param name="FLAG_WINDOW_MAXIMIZED" value="0x00000400"/>
+      <param name="FLAG_WINDOW_UNFOCUSED" value="0x00000800"/>
+      <param name="FLAG_WINDOW_TOPMOST" value="0x00001000"/>
+      <param name="FLAG_WINDOW_ALWAYS_RUN" value="0x00000100"/>
+      <param name="FLAG_WINDOW_TRANSPARENT" value="0x00000010"/>
+      <param name="FLAG_WINDOW_HIGHDPI" value="0x00002000"/>
+      <param name="FLAG_WINDOW_MOUSE_PASSTHROUGH" value="0x00004000"/>
+      <param name="FLAG_BORDERLESS_WINDOWED_MODE" value="0x00008000"/>
+      <param name="FLAG_MSAA_4X_HINT" value="0x00000020"/>
+      <param name="FLAG_INTERLACED_HINT" value="0x00010000"/>
+    </enum>
+    <enum name="TraceLogLevel">
+      <param name="LOG_ALL" value="0"/>
+      <param name="LOG_TRACE" value="1"/>
+      <param name="LOG_DEBUG" value="2"/>
+      <param name="LOG_INFO" value="3"/>
+      <param name="LOG_WARNING" value="4"/>
+      <param name="LOG_ERROR" value="5"/>
+      <param name="LOG_FATAL" value="6"/>
+      <param name="LOG_NONE" value="7"/>
+    </enum>
+    <enum name="KeyboardKey">
+      <param name="KEY_NULL" value="0"/>
+      <param name="KEY_APOSTROPHE" value="39"/>
+      <param name="KEY_COMMA" value="44"/>
+      <param name="KEY_MINUS" value="45"/>
+      <param name="KEY_PERIOD" value="46"/>
+      <param name="KEY_SLASH" value="47"/>
+      <param name="KEY_ZERO" value="48"/>
+      <param name="KEY_ONE" value="49"/>
+      <param name="KEY_TWO" value="50"/>
+      <param name="KEY_THREE" value="51"/>
+      <param name="KEY_FOUR" value="52"/>
+      <param name="KEY_FIVE" value="53"/>
+      <param name="KEY_SIX" value="54"/>
+      <param name="KEY_SEVEN" value="55"/>
+      <param name="KEY_EIGHT" value="56"/>
+      <param name="KEY_NINE" value="57"/>
+      <param name="KEY_SEMICOLON" value="59"/>
+      <param name="KEY_EQUAL" value="61"/>
+      <param name="KEY_A" value="65"/>
+      <param name="KEY_B" value="66"/>
+      <param name="KEY_C" value="67"/>
+      <param name="KEY_D" value="68"/>
+      <param name="KEY_E" value="69"/>
+      <param name="KEY_F" value="70"/>
+      <param name="KEY_G" value="71"/>
+      <param name="KEY_H" value="72"/>
+      <param name="KEY_I" value="73"/>
+      <param name="KEY_J" value="74"/>
+      <param name="KEY_K" value="75"/>
+      <param name="KEY_L" value="76"/>
+      <param name="KEY_M" value="77"/>
+      <param name="KEY_N" value="78"/>
+      <param name="KEY_O" value="79"/>
+      <param name="KEY_P" value="80"/>
+      <param name="KEY_Q" value="81"/>
+      <param name="KEY_R" value="82"/>
+      <param name="KEY_S" value="83"/>
+      <param name="KEY_T" value="84"/>
+      <param name="KEY_U" value="85"/>
+      <param name="KEY_V" value="86"/>
+      <param name="KEY_W" value="87"/>
+      <param name="KEY_X" value="88"/>
+      <param name="KEY_Y" value="89"/>
+      <param name="KEY_Z" value="90"/>
+      <param name="KEY_LEFT_BRACKET" value="91"/>
+      <param name="KEY_BACKSLASH" value="92"/>
+      <param name="KEY_RIGHT_BRACKET" value="93"/>
+      <param name="KEY_GRAVE" value="96"/>
+      <param name="KEY_SPACE" value="32"/>
+      <param name="KEY_ESCAPE" value="256"/>
+      <param name="KEY_ENTER" value="257"/>
+      <param name="KEY_TAB" value="258"/>
+      <param name="KEY_BACKSPACE" value="259"/>
+      <param name="KEY_INSERT" value="260"/>
+      <param name="KEY_DELETE" value="261"/>
+      <param name="KEY_RIGHT" value="262"/>
+      <param name="KEY_LEFT" value="263"/>
+      <param name="KEY_DOWN" value="264"/>
+      <param name="KEY_UP" value="265"/>
+      <param name="KEY_PAGE_UP" value="266"/>
+      <param name="KEY_PAGE_DOWN" value="267"/>
+      <param name="KEY_HOME" value="268"/>
+      <param name="KEY_END" value="269"/>
+      <param name="KEY_CAPS_LOCK" value="280"/>
+      <param name="KEY_SCROLL_LOCK" value="281"/>
+      <param name="KEY_NUM_LOCK" value="282"/>
+      <param name="KEY_PRINT_SCREEN" value="283"/>
+      <param name="KEY_PAUSE" value="284"/>
+      <param name="KEY_F1" value="290"/>
+      <param name="KEY_F2" value="291"/>
+      <param name="KEY_F3" value="292"/>
+      <param name="KEY_F4" value="293"/>
+      <param name="KEY_F5" value="294"/>
+      <param name="KEY_F6" value="295"/>
+      <param name="KEY_F7" value="296"/>
+      <param name="KEY_F8" value="297"/>
+      <param name="KEY_F9" value="298"/>
+      <param name="KEY_F10" value="299"/>
+      <param name="KEY_F11" value="300"/>
+      <param name="KEY_F12" value="301"/>
+      <param name="KEY_LEFT_SHIFT" value="340"/>
+      <param name="KEY_LEFT_CONTROL" value="341"/>
+      <param name="KEY_LEFT_ALT" value="342"/>
+      <param name="KEY_LEFT_SUPER" value="343"/>
+      <param name="KEY_RIGHT_SHIFT" value="344"/>
+      <param name="KEY_RIGHT_CONTROL" value="345"/>
+      <param name="KEY_RIGHT_ALT" value="346"/>
+      <param name="KEY_RIGHT_SUPER" value="347"/>
+      <param name="KEY_KB_MENU" value="348"/>
+      <param name="KEY_KP_0" value="320"/>
+      <param name="KEY_KP_1" value="321"/>
+      <param name="KEY_KP_2" value="322"/>
+      <param name="KEY_KP_3" value="323"/>
+      <param name="KEY_KP_4" value="324"/>
+      <param name="KEY_KP_5" value="325"/>
+      <param name="KEY_KP_6" value="326"/>
+      <param name="KEY_KP_7" value="327"/>
+      <param name="KEY_KP_8" value="328"/>
+      <param name="KEY_KP_9" value="329"/>
+      <param name="KEY_KP_DECIMAL" value="330"/>
+      <param name="KEY_KP_DIVIDE" value="331"/>
+      <param name="KEY_KP_MULTIPLY" value="332"/>
+      <param name="KEY_KP_SUBTRACT" value="333"/>
+      <param name="KEY_KP_ADD" value="334"/>
+      <param name="KEY_KP_ENTER" value="335"/>
+      <param name="KEY_KP_EQUAL" value="336"/>
+      <param name="KEY_BACK" value="4"/>
+      <param name="KEY_MENU" value="5"/>
+      <param name="KEY_VOLUME_UP" value="24"/>
+      <param name="KEY_VOLUME_DOWN" value="25"/>
+    </enum>
+    <enum name="MouseButton">
+      <param name="MOUSE_BUTTON_LEFT" value="0"/>
+      <param name="MOUSE_BUTTON_RIGHT" value="1"/>
+      <param name="MOUSE_BUTTON_MIDDLE" value="2"/>
+      <param name="MOUSE_BUTTON_SIDE" value="3"/>
+      <param name="MOUSE_BUTTON_EXTRA" value="4"/>
+      <param name="MOUSE_BUTTON_FORWARD" value="5"/>
+      <param name="MOUSE_BUTTON_BACK" value="6"/>
+    </enum>
+    <enum name="MouseCursor">
+      <param name="MOUSE_CURSOR_DEFAULT" value="0"/>
+      <param name="MOUSE_CURSOR_ARROW" value="1"/>
+      <param name="MOUSE_CURSOR_IBEAM" value="2"/>
+      <param name="MOUSE_CURSOR_CROSSHAIR" value="3"/>
+      <param name="MOUSE_CURSOR_POINTING_HAND" value="4"/>
+      <param name="MOUSE_CURSOR_RESIZE_EW" value="5"/>
+      <param name="MOUSE_CURSOR_RESIZE_NS" value="6"/>
+      <param name="MOUSE_CURSOR_RESIZE_NWSE" value="7"/>
+      <param name="MOUSE_CURSOR_RESIZE_NESW" value="8"/>
+      <param name="MOUSE_CURSOR_RESIZE_ALL" value="9"/>
+      <param name="MOUSE_CURSOR_NOT_ALLOWED" value="10"/>
+    </enum>
+    <enum name="GamepadButton">
+      <param name="GAMEPAD_BUTTON_UNKNOWN" value="0"/>
+      <param name="GAMEPAD_BUTTON_LEFT_FACE_UP" value="1"/>
+      <param name="GAMEPAD_BUTTON_LEFT_FACE_RIGHT" value="2"/>
+      <param name="GAMEPAD_BUTTON_LEFT_FACE_DOWN" value="3"/>
+      <param name="GAMEPAD_BUTTON_LEFT_FACE_LEFT" value="4"/>
+      <param name="GAMEPAD_BUTTON_RIGHT_FACE_UP" value="5"/>
+      <param name="GAMEPAD_BUTTON_RIGHT_FACE_RIGHT" value="6"/>
+      <param name="GAMEPAD_BUTTON_RIGHT_FACE_DOWN" value="7"/>
+      <param name="GAMEPAD_BUTTON_RIGHT_FACE_LEFT" value="8"/>
+      <param name="GAMEPAD_BUTTON_LEFT_TRIGGER_1" value="9"/>
+      <param name="GAMEPAD_BUTTON_LEFT_TRIGGER_2" value="10"/>
+      <param name="GAMEPAD_BUTTON_RIGHT_TRIGGER_1" value="11"/>
+      <param name="GAMEPAD_BUTTON_RIGHT_TRIGGER_2" value="12"/>
+      <param name="GAMEPAD_BUTTON_MIDDLE_LEFT" value="13"/>
+      <param name="GAMEPAD_BUTTON_MIDDLE" value="14"/>
+      <param name="GAMEPAD_BUTTON_MIDDLE_RIGHT" value="15"/>
+      <param name="GAMEPAD_BUTTON_LEFT_THUMB" value="16"/>
+      <param name="GAMEPAD_BUTTON_RIGHT_THUMB" value="17"/>
+    </enum>
+    <enum name="GamepadAxis">
+      <param name="GAMEPAD_AXIS_LEFT_X" value="0"/>
+      <param name="GAMEPAD_AXIS_LEFT_Y" value="1"/>
+      <param name="GAMEPAD_AXIS_RIGHT_X" value="2"/>
+      <param name="GAMEPAD_AXIS_RIGHT_Y" value="3"/>
+      <param name="GAMEPAD_AXIS_LEFT_TRIGGER" value="4"/>
+      <param name="GAMEPAD_AXIS_RIGHT_TRIGGER" value="5"/>
+    </enum>
+    <enum name="MaterialMapIndex">
+      <param name="MATERIAL_MAP_ALBEDO" value="0"/>
+      <param name="MATERIAL_MAP_METALNESS" value="1"/>
+      <param name="MATERIAL_MAP_NORMAL" value="2"/>
+      <param name="MATERIAL_MAP_ROUGHNESS" value="3"/>
+      <param name="MATERIAL_MAP_OCCLUSION" value="4"/>
+      <param name="MATERIAL_MAP_EMISSION" value="5"/>
+      <param name="MATERIAL_MAP_HEIGHT" value="6"/>
+      <param name="MATERIAL_MAP_CUBEMAP" value="7"/>
+      <param name="MATERIAL_MAP_IRRADIANCE" value="8"/>
+      <param name="MATERIAL_MAP_PREFILTER" value="9"/>
+      <param name="MATERIAL_MAP_BRDF" value="10"/>
+    </enum>
+    <enum name="ShaderLocationIndex">
+      <param name="SHADER_LOC_VERTEX_POSITION" value="0"/>
+      <param name="SHADER_LOC_VERTEX_TEXCOORD01" value="1"/>
+      <param name="SHADER_LOC_VERTEX_TEXCOORD02" value="2"/>
+      <param name="SHADER_LOC_VERTEX_NORMAL" value="3"/>
+      <param name="SHADER_LOC_VERTEX_TANGENT" value="4"/>
+      <param name="SHADER_LOC_VERTEX_COLOR" value="5"/>
+      <param name="SHADER_LOC_MATRIX_MVP" value="6"/>
+      <param name="SHADER_LOC_MATRIX_VIEW" value="7"/>
+      <param name="SHADER_LOC_MATRIX_PROJECTION" value="8"/>
+      <param name="SHADER_LOC_MATRIX_MODEL" value="9"/>
+      <param name="SHADER_LOC_MATRIX_NORMAL" value="10"/>
+      <param name="SHADER_LOC_VECTOR_VIEW" value="11"/>
+      <param name="SHADER_LOC_COLOR_DIFFUSE" value="12"/>
+      <param name="SHADER_LOC_COLOR_SPECULAR" value="13"/>
+      <param name="SHADER_LOC_COLOR_AMBIENT" value="14"/>
+      <param name="SHADER_LOC_MAP_ALBEDO" value="15"/>
+      <param name="SHADER_LOC_MAP_METALNESS" value="16"/>
+      <param name="SHADER_LOC_MAP_NORMAL" value="17"/>
+      <param name="SHADER_LOC_MAP_ROUGHNESS" value="18"/>
+      <param name="SHADER_LOC_MAP_OCCLUSION" value="19"/>
+      <param name="SHADER_LOC_MAP_EMISSION" value="20"/>
+      <param name="SHADER_LOC_MAP_HEIGHT" value="21"/>
+      <param name="SHADER_LOC_MAP_CUBEMAP" value="22"/>
+      <param name="SHADER_LOC_MAP_IRRADIANCE" value="23"/>
+      <param name="SHADER_LOC_MAP_PREFILTER" value="24"/>
+      <param name="SHADER_LOC_MAP_BRDF" value="25"/>
+      <param name="SHADER_LOC_VERTEX_BONEIDS" value="26"/>
+      <param name="SHADER_LOC_VERTEX_BONEWEIGHTS" value="27"/>
+      <param name="SHADER_LOC_BONE_MATRICES" value="28"/>
+      <param name="SHADER_LOC_VERTEX_INSTANCE_TX" value="29"/>
+    </enum>
+    <enum name="ShaderUniformDataType">
+      <param name="SHADER_UNIFORM_FLOAT" value="0"/>
+      <param name="SHADER_UNIFORM_VEC2" value="1"/>
+      <param name="SHADER_UNIFORM_VEC3" value="2"/>
+      <param name="SHADER_UNIFORM_VEC4" value="3"/>
+      <param name="SHADER_UNIFORM_INT" value="4"/>
+      <param name="SHADER_UNIFORM_IVEC2" value="5"/>
+      <param name="SHADER_UNIFORM_IVEC3" value="6"/>
+      <param name="SHADER_UNIFORM_IVEC4" value="7"/>
+      <param name="SHADER_UNIFORM_UINT" value="8"/>
+      <param name="SHADER_UNIFORM_UIVEC2" value="9"/>
+      <param name="SHADER_UNIFORM_UIVEC3" value="10"/>
+      <param name="SHADER_UNIFORM_UIVEC4" value="11"/>
+      <param name="SHADER_UNIFORM_SAMPLER2D" value="12"/>
+    </enum>
+    <enum name="ShaderAttributeDataType">
+      <param name="SHADER_ATTRIB_FLOAT" value="0"/>
+      <param name="SHADER_ATTRIB_VEC2" value="1"/>
+      <param name="SHADER_ATTRIB_VEC3" value="2"/>
+      <param name="SHADER_ATTRIB_VEC4" value="3"/>
+    </enum>
+    <enum name="PixelFormat">
+      <param name="PIXELFORMAT_UNCOMPRESSED_GRAYSCALE" value="1"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_GRAY_ALPHA" value="2"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R5G6B5" value="3"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R8G8B8" value="4"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R5G5B5A1" value="5"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R4G4B4A4" value="6"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R8G8B8A8" value="7"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R32" value="8"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R32G32B32" value="9"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R32G32B32A32" value="10"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R16" value="11"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R16G16B16" value="12"/>
+      <param name="PIXELFORMAT_UNCOMPRESSED_R16G16B16A16" value="13"/>
+      <param name="PIXELFORMAT_COMPRESSED_DXT1_RGB" value="14"/>
+      <param name="PIXELFORMAT_COMPRESSED_DXT1_RGBA" value="15"/>
+      <param name="PIXELFORMAT_COMPRESSED_DXT3_RGBA" value="16"/>
+      <param name="PIXELFORMAT_COMPRESSED_DXT5_RGBA" value="17"/>
+      <param name="PIXELFORMAT_COMPRESSED_ETC1_RGB" value="18"/>
+      <param name="PIXELFORMAT_COMPRESSED_ETC2_RGB" value="19"/>
+      <param name="PIXELFORMAT_COMPRESSED_ETC2_EAC_RGBA" value="20"/>
+      <param name="PIXELFORMAT_COMPRESSED_PVRT_RGB" value="21"/>
+      <param name="PIXELFORMAT_COMPRESSED_PVRT_RGBA" value="22"/>
+      <param name="PIXELFORMAT_COMPRESSED_ASTC_4x4_RGBA" value="23"/>
+      <param name="PIXELFORMAT_COMPRESSED_ASTC_8x8_RGBA" value="24"/>
+    </enum>
+    <enum name="TextureFilter">
+      <param name="TEXTURE_FILTER_POINT" value="0"/>
+      <param name="TEXTURE_FILTER_BILINEAR" value="1"/>
+      <param name="TEXTURE_FILTER_TRILINEAR" value="2"/>
+      <param name="TEXTURE_FILTER_ANISOTROPIC_4X" value="3"/>
+      <param name="TEXTURE_FILTER_ANISOTROPIC_8X" value="4"/>
+      <param name="TEXTURE_FILTER_ANISOTROPIC_16X" value="5"/>
+    </enum>
+    <enum name="TextureWrap">
+      <param name="TEXTURE_WRAP_REPEAT" value="0"/>
+      <param name="TEXTURE_WRAP_CLAMP" value="1"/>
+      <param name="TEXTURE_WRAP_MIRROR_REPEAT" value="2"/>
+      <param name="TEXTURE_WRAP_MIRROR_CLAMP" value="3"/>
+    </enum>
+    <enum name="CubemapLayout">
+      <param name="CUBEMAP_LAYOUT_AUTO_DETECT" value="0"/>
+      <param name="CUBEMAP_LAYOUT_LINE_VERTICAL" value="1"/>
+      <param name="CUBEMAP_LAYOUT_LINE_HORIZONTAL" value="2"/>
+      <param name="CUBEMAP_LAYOUT_CROSS_THREE_BY_FOUR" value="3"/>
+      <param name="CUBEMAP_LAYOUT_CROSS_FOUR_BY_THREE" value="4"/>
+    </enum>
+    <enum name="FontType">
+      <param name="FONT_DEFAULT" value="0"/>
+      <param name="FONT_BITMAP" value="1"/>
+      <param name="FONT_SDF" value="2"/>
+    </enum>
+    <enum name="BlendMode">
+      <param name="BLEND_ALPHA" value="0"/>
+      <param name="BLEND_ADDITIVE" value="1"/>
+      <param name="BLEND_MULTIPLIED" value="2"/>
+      <param name="BLEND_ADD_COLORS" value="3"/>
+      <param name="BLEND_SUBTRACT_COLORS" value="4"/>
+      <param name="BLEND_ALPHA_PREMULTIPLY" value="5"/>
+      <param name="BLEND_CUSTOM" value="6"/>
+      <param name="BLEND_CUSTOM_SEPARATE" value="7"/>
+    </enum>
+    <enum name="Gesture">
+      <param name="GESTURE_NONE" value="0"/>
+      <param name="GESTURE_TAP" value="1"/>
+      <param name="GESTURE_DOUBLETAP" value="2"/>
+      <param name="GESTURE_HOLD" value="4"/>
+      <param name="GESTURE_DRAG" value="8"/>
+      <param name="GESTURE_SWIPE_RIGHT" value="16"/>
+      <param name="GESTURE_SWIPE_LEFT" value="32"/>
+      <param name="GESTURE_SWIPE_UP" value="64"/>
+      <param name="GESTURE_SWIPE_DOWN" value="128"/>
+      <param name="GESTURE_PINCH_IN" value="256"/>
+      <param name="GESTURE_PINCH_OUT" value="512"/>
+    </enum>
+    <enum name="CameraMode">
+      <param name="CAMERA_CUSTOM" value="0"/>
+      <param name="CAMERA_FREE" value="1"/>
+      <param name="CAMERA_ORBITAL" value="2"/>
+      <param name="CAMERA_FIRST_PERSON" value="3"/>
+      <param name="CAMERA_THIRD_PERSON" value="4"/>
+    </enum>
+    <enum name="CameraProjection">
+      <param name="CAMERA_PERSPECTIVE" value="0"/>
+      <param name="CAMERA_ORTHOGRAPHIC" value="1"/>
+    </enum>
+    <enum name="NPatchLayout">
+      <param name="NPATCH_NINE_PATCH" value="0"/>
+      <param name="NPATCH_THREE_PATCH_VERTICAL" value="1"/>
+      <param name="NPATCH_THREE_PATCH_HORIZONTAL" value="2"/>
+    </enum>
+    <func name="InitWindow" return_type="void">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="title" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="CloseWindow" return_type="void"/>
+    <func name="WindowShouldClose" return_type="bool"/>
+    <func name="IsWindowReady" return_type="bool"/>
+    <func name="IsWindowFullscreen" return_type="bool"/>
+    <func name="IsWindowHidden" return_type="bool"/>
+    <func name="IsWindowMinimized" return_type="bool"/>
+    <func name="IsWindowMaximized" return_type="bool"/>
+    <func name="IsWindowFocused" return_type="bool"/>
+    <func name="IsWindowResized" return_type="bool"/>
+    <func name="IsWindowState" return_type="bool">
+      <param name="flag" type="unsigned int"/>
+    </func>
+    <func name="SetWindowState" return_type="void">
+      <param name="flags" type="unsigned int"/>
+    </func>
+    <func name="ClearWindowState" return_type="void">
+      <param name="flags" type="unsigned int"/>
+    </func>
+    <func name="ToggleFullscreen" return_type="void"/>
+    <func name="ToggleBorderlessWindowed" return_type="void"/>
+    <func name="MaximizeWindow" return_type="void"/>
+    <func name="MinimizeWindow" return_type="void"/>
+    <func name="RestoreWindow" return_type="void"/>
+    <func name="SetWindowIcon" return_type="void">
+      <param name="image" type="Image"/>
+    </func>
+    <func name="SetWindowIcons" return_type="void">
+      <param name="images" type="Image*" length="count"/>
+      <param name="count" type="int"/>
+    </func>
+    <func name="SetWindowTitle" return_type="void">
+      <param name="title" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="SetWindowPosition" return_type="void">
+      <param name="x" type="int"/>
+      <param name="y" type="int"/>
+    </func>
+    <func name="SetWindowMonitor" return_type="void">
+      <param name="monitor" type="int"/>
+    </func>
+    <func name="SetWindowMinSize" return_type="void">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+    </func>
+    <func name="SetWindowMaxSize" return_type="void">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+    </func>
+    <func name="SetWindowSize" return_type="void">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+    </func>
+    <func name="SetWindowOpacity" return_type="void">
+      <param name="opacity" type="float"/>
+    </func>
+    <func name="SetWindowFocused" return_type="void"/>
+    <func name="GetScreenWidth" return_type="int"/>
+    <func name="GetScreenHeight" return_type="int"/>
+    <func name="GetRenderWidth" return_type="int"/>
+    <func name="GetRenderHeight" return_type="int"/>
+    <func name="GetMonitorCount" return_type="int"/>
+    <func name="GetCurrentMonitor" return_type="int"/>
+    <func name="GetMonitorPosition" return_type="Vector2">
+      <param name="monitor" type="int"/>
+    </func>
+    <func name="GetMonitorWidth" return_type="int">
+      <param name="monitor" type="int"/>
+    </func>
+    <func name="GetMonitorHeight" return_type="int">
+      <param name="monitor" type="int"/>
+    </func>
+    <func name="GetMonitorPhysicalWidth" return_type="int">
+      <param name="monitor" type="int"/>
+    </func>
+    <func name="GetMonitorPhysicalHeight" return_type="int">
+      <param name="monitor" type="int"/>
+    </func>
+    <func name="GetMonitorRefreshRate" return_type="int">
+      <param name="monitor" type="int"/>
+    </func>
+    <func name="GetWindowPosition" return_type="Vector2"/>
+    <func name="GetWindowScaleDPI" return_type="Vector2"/>
+    <func name="SetClipboardText" return_type="void">
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="GetClipboardImage" return_type="Image"/>
+    <func name="EnableEventWaiting" return_type="void"/>
+    <func name="DisableEventWaiting" return_type="void"/>
+    <func name="ShowCursor" return_type="void"/>
+    <func name="HideCursor" return_type="void"/>
+    <func name="IsCursorHidden" return_type="bool"/>
+    <func name="EnableCursor" return_type="void"/>
+    <func name="DisableCursor" return_type="void"/>
+    <func name="IsCursorOnScreen" return_type="bool"/>
+    <func name="ClearBackground" return_type="void">
+      <param name="color" type="Color"/>
+    </func>
+    <func name="BeginDrawing" return_type="void"/>
+    <func name="EndDrawing" return_type="void"/>
+    <func name="BeginMode2D" return_type="void">
+      <param name="camera" type="Camera2D"/>
+    </func>
+    <func name="EndMode2D" return_type="void"/>
+    <func name="BeginMode3D" return_type="void">
+      <param name="camera" type="Camera3D"/>
+    </func>
+    <func name="EndMode3D" return_type="void"/>
+    <func name="BeginTextureMode" return_type="void">
+      <param name="target" type="RenderTexture2D"/>
+    </func>
+    <func name="EndTextureMode" return_type="void"/>
+    <func name="BeginShaderMode" return_type="void">
+      <param name="shader" type="Shader"/>
+    </func>
+    <func name="EndShaderMode" return_type="void"/>
+    <func name="BeginBlendMode" return_type="void">
+      <param name="mode" type="int"/>
+    </func>
+    <func name="EndBlendMode" return_type="void"/>
+    <func name="BeginScissorMode" return_type="void">
+      <param name="x" type="int"/>
+      <param name="y" type="int"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+    </func>
+    <func name="EndScissorMode" return_type="void"/>
+    <func name="BeginVrStereoMode" return_type="void">
+      <param name="config" type="VrStereoConfig"/>
+    </func>
+    <func name="EndVrStereoMode" return_type="void"/>
+    <func name="LoadVrStereoConfig" return_type="VrStereoConfig">
+      <param name="device" type="VrDeviceInfo"/>
+    </func>
+    <func name="UnloadVrStereoConfig" return_type="void">
+      <param name="config" type="VrStereoConfig"/>
+    </func>
+    <func name="LoadShader" return_type="Shader">
+      <param name="vsFileName" type="const char*" length="null_terminated"/>
+      <param name="fsFileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadShaderFromMemory" return_type="Shader">
+      <param name="vsCode" type="const char*" length="null_terminated"/>
+      <param name="fsCode" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="IsShaderValid" return_type="bool">
+      <param name="shader" type="Shader"/>
+    </func>
+    <func name="GetShaderLocation" return_type="int">
+      <param name="shader" type="Shader"/>
+      <param name="uniformName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="GetShaderLocationAttrib" return_type="int">
+      <param name="shader" type="Shader"/>
+      <param name="attribName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="SetShaderValue" return_type="void">
+      <param name="shader" type="Shader"/>
+      <param name="locIndex" type="int"/>
+      <param name="value" type="const void*" length="1 /* TODO: Specify length for value */"/>
+      <param name="uniformType" type="int"/>
+    </func>
+    <func name="SetShaderValueV" return_type="void">
+      <param name="shader" type="Shader"/>
+      <param name="locIndex" type="int"/>
+      <param name="value" type="const void*" length="count"/>
+      <param name="uniformType" type="int"/>
+      <param name="count" type="int"/>
+    </func>
+    <func name="SetShaderValueMatrix" return_type="void">
+      <param name="shader" type="Shader"/>
+      <param name="locIndex" type="int"/>
+      <param name="mat" type="Matrix"/>
+    </func>
+    <func name="SetShaderValueTexture" return_type="void">
+      <param name="shader" type="Shader"/>
+      <param name="locIndex" type="int"/>
+      <param name="texture" type="Texture2D"/>
+    </func>
+    <func name="UnloadShader" return_type="void">
+      <param name="shader" type="Shader"/>
+    </func>
+    <func name="GetScreenToWorldRay" return_type="Ray">
+      <param name="position" type="Vector2"/>
+      <param name="camera" type="Camera"/>
+    </func>
+    <func name="GetScreenToWorldRayEx" return_type="Ray">
+      <param name="position" type="Vector2"/>
+      <param name="camera" type="Camera"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+    </func>
+    <func name="GetWorldToScreen" return_type="Vector2">
+      <param name="position" type="Vector3"/>
+      <param name="camera" type="Camera"/>
+    </func>
+    <func name="GetWorldToScreenEx" return_type="Vector2">
+      <param name="position" type="Vector3"/>
+      <param name="camera" type="Camera"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+    </func>
+    <func name="GetWorldToScreen2D" return_type="Vector2">
+      <param name="position" type="Vector2"/>
+      <param name="camera" type="Camera2D"/>
+    </func>
+    <func name="GetScreenToWorld2D" return_type="Vector2">
+      <param name="position" type="Vector2"/>
+      <param name="camera" type="Camera2D"/>
+    </func>
+    <func name="GetCameraMatrix" return_type="Matrix">
+      <param name="camera" type="Camera"/>
+    </func>
+    <func name="GetCameraMatrix2D" return_type="Matrix">
+      <param name="camera" type="Camera2D"/>
+    </func>
+    <func name="SetTargetFPS" return_type="void">
+      <param name="fps" type="int"/>
+    </func>
+    <func name="GetFrameTime" return_type="float"/>
+    <func name="GetTime" return_type="double"/>
+    <func name="GetFPS" return_type="int"/>
+    <func name="SwapScreenBuffer" return_type="void"/>
+    <func name="PollInputEvents" return_type="void"/>
+    <func name="WaitTime" return_type="void">
+      <param name="seconds" type="double"/>
+    </func>
+    <func name="SetRandomSeed" return_type="void">
+      <param name="seed" type="unsigned int"/>
+    </func>
+    <func name="GetRandomValue" return_type="int">
+      <param name="min" type="int"/>
+      <param name="max" type="int"/>
+    </func>
+    <func name="UnloadRandomSequence" return_type="void">
+      <param name="sequence" type="int*" length="1 /* TODO: Specify length for sequence */"/>
+    </func>
+    <func name="TakeScreenshot" return_type="void">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="SetConfigFlags" return_type="void">
+      <param name="flags" type="unsigned int"/>
+    </func>
+    <func name="OpenURL" return_type="void">
+      <param name="url" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="TraceLog" return_type="void">
+      <param name="logLevel" type="int"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="SetTraceLogLevel" return_type="void">
+      <param name="logLevel" type="int"/>
+    </func>
+    <func name="MemFree" return_type="void">
+      <param name="ptr" type="void*" length="1 /* TODO: Specify length for ptr */"/>
+    </func>
+    <func name="SetTraceLogCallback" return_type="void">
+      <param name="callback" type="TraceLogCallback"/>
+    </func>
+    <func name="SetLoadFileDataCallback" return_type="void">
+      <param name="callback" type="LoadFileDataCallback"/>
+    </func>
+    <func name="SetSaveFileDataCallback" return_type="void">
+      <param name="callback" type="SaveFileDataCallback"/>
+    </func>
+    <func name="SetLoadFileTextCallback" return_type="void">
+      <param name="callback" type="LoadFileTextCallback"/>
+    </func>
+    <func name="SetSaveFileTextCallback" return_type="void">
+      <param name="callback" type="SaveFileTextCallback"/>
+    </func>
+    <func name="UnloadFileData" return_type="void">
+      <param name="data" type="unsigned char*" length="1 /* TODO: Specify length for data */"/>
+    </func>
+    <func name="SaveFileData" return_type="bool">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+      <param name="data" type="void*" length="1 /* TODO: Specify length for data */"/>
+      <param name="dataSize" type="int"/>
+    </func>
+    <func name="ExportDataAsCode" return_type="bool">
+      <param name="data" type="const unsigned char*" length="1 /* TODO: Specify length for data */"/>
+      <param name="dataSize" type="int"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="UnloadFileText" return_type="void">
+      <param name="text" type="char*" length="null_terminated"/>
+    </func>
+    <func name="SaveFileText" return_type="bool">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="FileExists" return_type="bool">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="DirectoryExists" return_type="bool">
+      <param name="dirPath" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="IsFileExtension" return_type="bool">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+      <param name="ext" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="GetFileLength" return_type="int">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="MakeDirectory" return_type="int">
+      <param name="dirPath" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="ChangeDirectory" return_type="bool">
+      <param name="dir" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="IsPathFile" return_type="bool">
+      <param name="path" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="IsFileNameValid" return_type="bool">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadDirectoryFiles" return_type="FilePathList">
+      <param name="dirPath" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadDirectoryFilesEx" return_type="FilePathList">
+      <param name="basePath" type="const char*" length="null_terminated"/>
+      <param name="filter" type="const char*" length="null_terminated"/>
+      <param name="scanSubdirs" type="bool"/>
+    </func>
+    <func name="UnloadDirectoryFiles" return_type="void">
+      <param name="files" type="FilePathList"/>
+    </func>
+    <func name="IsFileDropped" return_type="bool"/>
+    <func name="LoadDroppedFiles" return_type="FilePathList"/>
+    <func name="UnloadDroppedFiles" return_type="void">
+      <param name="files" type="FilePathList"/>
+    </func>
+    <func name="GetFileModTime" return_type="long">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="ComputeCRC32" return_type="int">
+      <param name="data" type="unsigned char*" length="1 /* TODO: Specify length for data */"/>
+      <param name="dataSize" type="int"/>
+    </func>
+    <func name="LoadAutomationEventList" return_type="AutomationEventList">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="UnloadAutomationEventList" return_type="void">
+      <param name="list" type="AutomationEventList"/>
+    </func>
+    <func name="ExportAutomationEventList" return_type="bool">
+      <param name="list" type="AutomationEventList"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="SetAutomationEventList" return_type="void">
+      <param name="list" type="AutomationEventList*" length="1 /* TODO: Specify length for list */"/>
+    </func>
+    <func name="SetAutomationEventBaseFrame" return_type="void">
+      <param name="frame" type="int"/>
+    </func>
+    <func name="StartAutomationEventRecording" return_type="void"/>
+    <func name="StopAutomationEventRecording" return_type="void"/>
+    <func name="PlayAutomationEvent" return_type="void">
+      <param name="event" type="AutomationEvent"/>
+    </func>
+    <func name="IsKeyPressed" return_type="bool">
+      <param name="key" type="int"/>
+    </func>
+    <func name="IsKeyPressedRepeat" return_type="bool">
+      <param name="key" type="int"/>
+    </func>
+    <func name="IsKeyDown" return_type="bool">
+      <param name="key" type="int"/>
+    </func>
+    <func name="IsKeyReleased" return_type="bool">
+      <param name="key" type="int"/>
+    </func>
+    <func name="IsKeyUp" return_type="bool">
+      <param name="key" type="int"/>
+    </func>
+    <func name="GetKeyPressed" return_type="int"/>
+    <func name="GetCharPressed" return_type="int"/>
+    <func name="SetExitKey" return_type="void">
+      <param name="key" type="int"/>
+    </func>
+    <func name="IsGamepadAvailable" return_type="bool">
+      <param name="gamepad" type="int"/>
+    </func>
+    <func name="IsGamepadButtonPressed" return_type="bool">
+      <param name="gamepad" type="int"/>
+      <param name="button" type="int"/>
+    </func>
+    <func name="IsGamepadButtonDown" return_type="bool">
+      <param name="gamepad" type="int"/>
+      <param name="button" type="int"/>
+    </func>
+    <func name="IsGamepadButtonReleased" return_type="bool">
+      <param name="gamepad" type="int"/>
+      <param name="button" type="int"/>
+    </func>
+    <func name="IsGamepadButtonUp" return_type="bool">
+      <param name="gamepad" type="int"/>
+      <param name="button" type="int"/>
+    </func>
+    <func name="GetGamepadButtonPressed" return_type="int"/>
+    <func name="GetGamepadAxisCount" return_type="int">
+      <param name="gamepad" type="int"/>
+    </func>
+    <func name="GetGamepadAxisMovement" return_type="float">
+      <param name="gamepad" type="int"/>
+      <param name="axis" type="int"/>
+    </func>
+    <func name="SetGamepadMappings" return_type="int">
+      <param name="mappings" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="SetGamepadVibration" return_type="void">
+      <param name="gamepad" type="int"/>
+      <param name="leftMotor" type="float"/>
+      <param name="rightMotor" type="float"/>
+      <param name="duration" type="float"/>
+    </func>
+    <func name="IsMouseButtonPressed" return_type="bool">
+      <param name="button" type="int"/>
+    </func>
+    <func name="IsMouseButtonDown" return_type="bool">
+      <param name="button" type="int"/>
+    </func>
+    <func name="IsMouseButtonReleased" return_type="bool">
+      <param name="button" type="int"/>
+    </func>
+    <func name="IsMouseButtonUp" return_type="bool">
+      <param name="button" type="int"/>
+    </func>
+    <func name="GetMouseX" return_type="int"/>
+    <func name="GetMouseY" return_type="int"/>
+    <func name="GetMousePosition" return_type="Vector2"/>
+    <func name="GetMouseDelta" return_type="Vector2"/>
+    <func name="SetMousePosition" return_type="void">
+      <param name="x" type="int"/>
+      <param name="y" type="int"/>
+    </func>
+    <func name="SetMouseOffset" return_type="void">
+      <param name="offsetX" type="int"/>
+      <param name="offsetY" type="int"/>
+    </func>
+    <func name="SetMouseScale" return_type="void">
+      <param name="scaleX" type="float"/>
+      <param name="scaleY" type="float"/>
+    </func>
+    <func name="GetMouseWheelMove" return_type="float"/>
+    <func name="GetMouseWheelMoveV" return_type="Vector2"/>
+    <func name="SetMouseCursor" return_type="void">
+      <param name="cursor" type="int"/>
+    </func>
+    <func name="GetTouchX" return_type="int"/>
+    <func name="GetTouchY" return_type="int"/>
+    <func name="GetTouchPosition" return_type="Vector2">
+      <param name="index" type="int"/>
+    </func>
+    <func name="GetTouchPointId" return_type="int">
+      <param name="index" type="int"/>
+    </func>
+    <func name="GetTouchPointCount" return_type="int"/>
+    <func name="SetGesturesEnabled" return_type="void">
+      <param name="flags" type="unsigned int"/>
+    </func>
+    <func name="IsGestureDetected" return_type="bool">
+      <param name="gesture" type="unsigned int"/>
+    </func>
+    <func name="GetGestureDetected" return_type="int"/>
+    <func name="GetGestureHoldDuration" return_type="float"/>
+    <func name="GetGestureDragVector" return_type="Vector2"/>
+    <func name="GetGestureDragAngle" return_type="float"/>
+    <func name="GetGesturePinchVector" return_type="Vector2"/>
+    <func name="GetGesturePinchAngle" return_type="float"/>
+    <func name="UpdateCamera" return_type="void">
+      <param name="camera" type="Camera*" length="1 /* TODO: Specify length for camera */"/>
+      <param name="mode" type="int"/>
+    </func>
+    <func name="UpdateCameraPro" return_type="void">
+      <param name="camera" type="Camera*" length="1 /* TODO: Specify length for camera */"/>
+      <param name="movement" type="Vector3"/>
+      <param name="rotation" type="Vector3"/>
+      <param name="zoom" type="float"/>
+    </func>
+    <func name="SetShapesTexture" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="source" type="Rectangle"/>
+    </func>
+    <func name="GetShapesTexture" return_type="Texture2D"/>
+    <func name="GetShapesTextureRectangle" return_type="Rectangle"/>
+    <func name="DrawPixel" return_type="void">
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawPixelV" return_type="void">
+      <param name="position" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawLine" return_type="void">
+      <param name="startPosX" type="int"/>
+      <param name="startPosY" type="int"/>
+      <param name="endPosX" type="int"/>
+      <param name="endPosY" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawLineV" return_type="void">
+      <param name="startPos" type="Vector2"/>
+      <param name="endPos" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawLineEx" return_type="void">
+      <param name="startPos" type="Vector2"/>
+      <param name="endPos" type="Vector2"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawLineStrip" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawLineBezier" return_type="void">
+      <param name="startPos" type="Vector2"/>
+      <param name="endPos" type="Vector2"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCircle" return_type="void">
+      <param name="centerX" type="int"/>
+      <param name="centerY" type="int"/>
+      <param name="radius" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCircleSector" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="float"/>
+      <param name="startAngle" type="float"/>
+      <param name="endAngle" type="float"/>
+      <param name="segments" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCircleSectorLines" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="float"/>
+      <param name="startAngle" type="float"/>
+      <param name="endAngle" type="float"/>
+      <param name="segments" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCircleGradient" return_type="void">
+      <param name="centerX" type="int"/>
+      <param name="centerY" type="int"/>
+      <param name="radius" type="float"/>
+      <param name="inner" type="Color"/>
+      <param name="outer" type="Color"/>
+    </func>
+    <func name="DrawCircleV" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCircleLines" return_type="void">
+      <param name="centerX" type="int"/>
+      <param name="centerY" type="int"/>
+      <param name="radius" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCircleLinesV" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawEllipse" return_type="void">
+      <param name="centerX" type="int"/>
+      <param name="centerY" type="int"/>
+      <param name="radiusH" type="float"/>
+      <param name="radiusV" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawEllipseV" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="radiusH" type="float"/>
+      <param name="radiusV" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawEllipseLines" return_type="void">
+      <param name="centerX" type="int"/>
+      <param name="centerY" type="int"/>
+      <param name="radiusH" type="float"/>
+      <param name="radiusV" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawEllipseLinesV" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="radiusH" type="float"/>
+      <param name="radiusV" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRing" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="innerRadius" type="float"/>
+      <param name="outerRadius" type="float"/>
+      <param name="startAngle" type="float"/>
+      <param name="endAngle" type="float"/>
+      <param name="segments" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRingLines" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="innerRadius" type="float"/>
+      <param name="outerRadius" type="float"/>
+      <param name="startAngle" type="float"/>
+      <param name="endAngle" type="float"/>
+      <param name="segments" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangle" return_type="void">
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangleV" return_type="void">
+      <param name="position" type="Vector2"/>
+      <param name="size" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangleRec" return_type="void">
+      <param name="rec" type="Rectangle"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectanglePro" return_type="void">
+      <param name="rec" type="Rectangle"/>
+      <param name="origin" type="Vector2"/>
+      <param name="rotation" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangleGradientV" return_type="void">
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="top" type="Color"/>
+      <param name="bottom" type="Color"/>
+    </func>
+    <func name="DrawRectangleGradientH" return_type="void">
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="left" type="Color"/>
+      <param name="right" type="Color"/>
+    </func>
+    <func name="DrawRectangleGradientEx" return_type="void">
+      <param name="rec" type="Rectangle"/>
+      <param name="topLeft" type="Color"/>
+      <param name="bottomLeft" type="Color"/>
+      <param name="bottomRight" type="Color"/>
+      <param name="topRight" type="Color"/>
+    </func>
+    <func name="DrawRectangleLines" return_type="void">
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangleLinesEx" return_type="void">
+      <param name="rec" type="Rectangle"/>
+      <param name="lineThick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangleRounded" return_type="void">
+      <param name="rec" type="Rectangle"/>
+      <param name="roundness" type="float"/>
+      <param name="segments" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangleRoundedLines" return_type="void">
+      <param name="rec" type="Rectangle"/>
+      <param name="roundness" type="float"/>
+      <param name="segments" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRectangleRoundedLinesEx" return_type="void">
+      <param name="rec" type="Rectangle"/>
+      <param name="roundness" type="float"/>
+      <param name="segments" type="int"/>
+      <param name="lineThick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawTriangle" return_type="void">
+      <param name="v1" type="Vector2"/>
+      <param name="v2" type="Vector2"/>
+      <param name="v3" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawTriangleLines" return_type="void">
+      <param name="v1" type="Vector2"/>
+      <param name="v2" type="Vector2"/>
+      <param name="v3" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawTriangleFan" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawTriangleStrip" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawPoly" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="sides" type="int"/>
+      <param name="radius" type="float"/>
+      <param name="rotation" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawPolyLines" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="sides" type="int"/>
+      <param name="radius" type="float"/>
+      <param name="rotation" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawPolyLinesEx" return_type="void">
+      <param name="center" type="Vector2"/>
+      <param name="sides" type="int"/>
+      <param name="radius" type="float"/>
+      <param name="rotation" type="float"/>
+      <param name="lineThick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineLinear" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineBasis" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineCatmullRom" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineBezierQuadratic" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineBezierCubic" return_type="void">
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineSegmentLinear" return_type="void">
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineSegmentBasis" return_type="void">
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+      <param name="p3" type="Vector2"/>
+      <param name="p4" type="Vector2"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineSegmentCatmullRom" return_type="void">
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+      <param name="p3" type="Vector2"/>
+      <param name="p4" type="Vector2"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineSegmentBezierQuadratic" return_type="void">
+      <param name="p1" type="Vector2"/>
+      <param name="c2" type="Vector2"/>
+      <param name="p3" type="Vector2"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSplineSegmentBezierCubic" return_type="void">
+      <param name="p1" type="Vector2"/>
+      <param name="c2" type="Vector2"/>
+      <param name="c3" type="Vector2"/>
+      <param name="p4" type="Vector2"/>
+      <param name="thick" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="GetSplinePointLinear" return_type="Vector2">
+      <param name="startPos" type="Vector2"/>
+      <param name="endPos" type="Vector2"/>
+      <param name="t" type="float"/>
+    </func>
+    <func name="GetSplinePointBasis" return_type="Vector2">
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+      <param name="p3" type="Vector2"/>
+      <param name="p4" type="Vector2"/>
+      <param name="t" type="float"/>
+    </func>
+    <func name="GetSplinePointCatmullRom" return_type="Vector2">
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+      <param name="p3" type="Vector2"/>
+      <param name="p4" type="Vector2"/>
+      <param name="t" type="float"/>
+    </func>
+    <func name="GetSplinePointBezierQuad" return_type="Vector2">
+      <param name="p1" type="Vector2"/>
+      <param name="c2" type="Vector2"/>
+      <param name="p3" type="Vector2"/>
+      <param name="t" type="float"/>
+    </func>
+    <func name="GetSplinePointBezierCubic" return_type="Vector2">
+      <param name="p1" type="Vector2"/>
+      <param name="c2" type="Vector2"/>
+      <param name="c3" type="Vector2"/>
+      <param name="p4" type="Vector2"/>
+      <param name="t" type="float"/>
+    </func>
+    <func name="CheckCollisionRecs" return_type="bool">
+      <param name="rec1" type="Rectangle"/>
+      <param name="rec2" type="Rectangle"/>
+    </func>
+    <func name="CheckCollisionCircles" return_type="bool">
+      <param name="center1" type="Vector2"/>
+      <param name="radius1" type="float"/>
+      <param name="center2" type="Vector2"/>
+      <param name="radius2" type="float"/>
+    </func>
+    <func name="CheckCollisionCircleRec" return_type="bool">
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="float"/>
+      <param name="rec" type="Rectangle"/>
+    </func>
+    <func name="CheckCollisionCircleLine" return_type="bool">
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="float"/>
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+    </func>
+    <func name="CheckCollisionPointRec" return_type="bool">
+      <param name="point" type="Vector2"/>
+      <param name="rec" type="Rectangle"/>
+    </func>
+    <func name="CheckCollisionPointCircle" return_type="bool">
+      <param name="point" type="Vector2"/>
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="float"/>
+    </func>
+    <func name="CheckCollisionPointTriangle" return_type="bool">
+      <param name="point" type="Vector2"/>
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+      <param name="p3" type="Vector2"/>
+    </func>
+    <func name="CheckCollisionPointLine" return_type="bool">
+      <param name="point" type="Vector2"/>
+      <param name="p1" type="Vector2"/>
+      <param name="p2" type="Vector2"/>
+      <param name="threshold" type="int"/>
+    </func>
+    <func name="CheckCollisionPointPoly" return_type="bool">
+      <param name="point" type="Vector2"/>
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+    </func>
+    <func name="CheckCollisionLines" return_type="bool">
+      <param name="startPos1" type="Vector2"/>
+      <param name="endPos1" type="Vector2"/>
+      <param name="startPos2" type="Vector2"/>
+      <param name="endPos2" type="Vector2"/>
+      <param name="collisionPoint" type="Vector2*" length="1 /* TODO: Specify length for collisionPoint */"/>
+    </func>
+    <func name="GetCollisionRec" return_type="Rectangle">
+      <param name="rec1" type="Rectangle"/>
+      <param name="rec2" type="Rectangle"/>
+    </func>
+    <func name="LoadImage" return_type="Image">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadImageRaw" return_type="Image">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="format" type="int"/>
+      <param name="headerSize" type="int"/>
+    </func>
+    <func name="LoadImageAnim" return_type="Image">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+      <param name="frames" type="int*" length="1 /* TODO: Specify length for frames */"/>
+    </func>
+    <func name="LoadImageAnimFromMemory" return_type="Image">
+      <param name="fileType" type="const char*" length="null_terminated"/>
+      <param name="fileData" type="const unsigned char*" length="1 /* TODO: Specify length for fileData */"/>
+      <param name="dataSize" type="int"/>
+      <param name="frames" type="int*" length="1 /* TODO: Specify length for frames */"/>
+    </func>
+    <func name="LoadImageFromMemory" return_type="Image">
+      <param name="fileType" type="const char*" length="null_terminated"/>
+      <param name="fileData" type="const unsigned char*" length="1 /* TODO: Specify length for fileData */"/>
+      <param name="dataSize" type="int"/>
+    </func>
+    <func name="LoadImageFromTexture" return_type="Image">
+      <param name="texture" type="Texture2D"/>
+    </func>
+    <func name="LoadImageFromScreen" return_type="Image"/>
+    <func name="IsImageValid" return_type="bool">
+      <param name="image" type="Image"/>
+    </func>
+    <func name="UnloadImage" return_type="void">
+      <param name="image" type="Image"/>
+    </func>
+    <func name="ExportImage" return_type="bool">
+      <param name="image" type="Image"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="ExportImageAsCode" return_type="bool">
+      <param name="image" type="Image"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="GenImageColor" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="GenImageGradientLinear" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="direction" type="int"/>
+      <param name="start" type="Color"/>
+      <param name="end" type="Color"/>
+    </func>
+    <func name="GenImageGradientRadial" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="density" type="float"/>
+      <param name="inner" type="Color"/>
+      <param name="outer" type="Color"/>
+    </func>
+    <func name="GenImageGradientSquare" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="density" type="float"/>
+      <param name="inner" type="Color"/>
+      <param name="outer" type="Color"/>
+    </func>
+    <func name="GenImageChecked" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="checksX" type="int"/>
+      <param name="checksY" type="int"/>
+      <param name="col1" type="Color"/>
+      <param name="col2" type="Color"/>
+    </func>
+    <func name="GenImageWhiteNoise" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="factor" type="float"/>
+    </func>
+    <func name="GenImagePerlinNoise" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="offsetX" type="int"/>
+      <param name="offsetY" type="int"/>
+      <param name="scale" type="float"/>
+    </func>
+    <func name="GenImageCellular" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="tileSize" type="int"/>
+    </func>
+    <func name="GenImageText" return_type="Image">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="ImageCopy" return_type="Image">
+      <param name="image" type="Image"/>
+    </func>
+    <func name="ImageFromImage" return_type="Image">
+      <param name="image" type="Image"/>
+      <param name="rec" type="Rectangle"/>
+    </func>
+    <func name="ImageFromChannel" return_type="Image">
+      <param name="image" type="Image"/>
+      <param name="selectedChannel" type="int"/>
+    </func>
+    <func name="ImageText" return_type="Image">
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="fontSize" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageTextEx" return_type="Image">
+      <param name="font" type="Font"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="fontSize" type="float"/>
+      <param name="spacing" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="ImageFormat" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="newFormat" type="int"/>
+    </func>
+    <func name="ImageToPOT" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="fill" type="Color"/>
+    </func>
+    <func name="ImageCrop" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="crop" type="Rectangle"/>
+    </func>
+    <func name="ImageAlphaCrop" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="threshold" type="float"/>
+    </func>
+    <func name="ImageAlphaClear" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="color" type="Color"/>
+      <param name="threshold" type="float"/>
+    </func>
+    <func name="ImageAlphaMask" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="alphaMask" type="Image"/>
+    </func>
+    <func name="ImageAlphaPremultiply" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageBlurGaussian" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="blurSize" type="int"/>
+    </func>
+    <func name="ImageKernelConvolution" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="kernel" type="const float*" length="1 /* TODO: Specify length for kernel */"/>
+      <param name="kernelSize" type="int"/>
+    </func>
+    <func name="ImageResize" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="newWidth" type="int"/>
+      <param name="newHeight" type="int"/>
+    </func>
+    <func name="ImageResizeNN" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="newWidth" type="int"/>
+      <param name="newHeight" type="int"/>
+    </func>
+    <func name="ImageResizeCanvas" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="newWidth" type="int"/>
+      <param name="newHeight" type="int"/>
+      <param name="offsetX" type="int"/>
+      <param name="offsetY" type="int"/>
+      <param name="fill" type="Color"/>
+    </func>
+    <func name="ImageMipmaps" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageDither" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="rBpp" type="int"/>
+      <param name="gBpp" type="int"/>
+      <param name="bBpp" type="int"/>
+      <param name="aBpp" type="int"/>
+    </func>
+    <func name="ImageFlipVertical" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageFlipHorizontal" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageRotate" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="degrees" type="int"/>
+    </func>
+    <func name="ImageRotateCW" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageRotateCCW" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageColorTint" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageColorInvert" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageColorGrayscale" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+    </func>
+    <func name="ImageColorContrast" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="contrast" type="float"/>
+    </func>
+    <func name="ImageColorBrightness" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="brightness" type="int"/>
+    </func>
+    <func name="ImageColorReplace" return_type="void">
+      <param name="image" type="Image*" length="1 /* TODO: Specify length for image */"/>
+      <param name="color" type="Color"/>
+      <param name="replace" type="Color"/>
+    </func>
+    <func name="UnloadImageColors" return_type="void">
+      <param name="colors" type="Color*" length="1 /* TODO: Specify length for colors */"/>
+    </func>
+    <func name="UnloadImagePalette" return_type="void">
+      <param name="colors" type="Color*" length="1 /* TODO: Specify length for colors */"/>
+    </func>
+    <func name="GetImageAlphaBorder" return_type="Rectangle">
+      <param name="image" type="Image"/>
+      <param name="threshold" type="float"/>
+    </func>
+    <func name="GetImageColor" return_type="Color">
+      <param name="image" type="Image"/>
+      <param name="x" type="int"/>
+      <param name="y" type="int"/>
+    </func>
+    <func name="ImageClearBackground" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawPixel" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawPixelV" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="position" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawLine" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="startPosX" type="int"/>
+      <param name="startPosY" type="int"/>
+      <param name="endPosX" type="int"/>
+      <param name="endPosY" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawLineV" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="start" type="Vector2"/>
+      <param name="end" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawLineEx" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="start" type="Vector2"/>
+      <param name="end" type="Vector2"/>
+      <param name="thick" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawCircle" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="centerX" type="int"/>
+      <param name="centerY" type="int"/>
+      <param name="radius" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawCircleV" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawCircleLines" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="centerX" type="int"/>
+      <param name="centerY" type="int"/>
+      <param name="radius" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawCircleLinesV" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="center" type="Vector2"/>
+      <param name="radius" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawRectangle" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawRectangleV" return_type="void">
+      <param name="dst" type="Image*" length="size"/>
+      <param name="position" type="Vector2"/>
+      <param name="size" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawRectangleRec" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="rec" type="Rectangle"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawRectangleLines" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="rec" type="Rectangle"/>
+      <param name="thick" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawTriangle" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="v1" type="Vector2"/>
+      <param name="v2" type="Vector2"/>
+      <param name="v3" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawTriangleEx" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="v1" type="Vector2"/>
+      <param name="v2" type="Vector2"/>
+      <param name="v3" type="Vector2"/>
+      <param name="c1" type="Color"/>
+      <param name="c2" type="Color"/>
+      <param name="c3" type="Color"/>
+    </func>
+    <func name="ImageDrawTriangleLines" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="v1" type="Vector2"/>
+      <param name="v2" type="Vector2"/>
+      <param name="v3" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawTriangleFan" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawTriangleStrip" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="points" type="const Vector2*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDraw" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="src" type="Image"/>
+      <param name="srcRec" type="Rectangle"/>
+      <param name="dstRec" type="Rectangle"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="ImageDrawText" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="fontSize" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ImageDrawTextEx" return_type="void">
+      <param name="dst" type="Image*" length="1 /* TODO: Specify length for dst */"/>
+      <param name="font" type="Font"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="position" type="Vector2"/>
+      <param name="fontSize" type="float"/>
+      <param name="spacing" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="LoadTexture" return_type="Texture2D">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadTextureFromImage" return_type="Texture2D">
+      <param name="image" type="Image"/>
+    </func>
+    <func name="LoadTextureCubemap" return_type="TextureCubemap">
+      <param name="image" type="Image"/>
+      <param name="layout" type="int"/>
+    </func>
+    <func name="LoadRenderTexture" return_type="RenderTexture2D">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+    </func>
+    <func name="IsTextureValid" return_type="bool">
+      <param name="texture" type="Texture2D"/>
+    </func>
+    <func name="UnloadTexture" return_type="void">
+      <param name="texture" type="Texture2D"/>
+    </func>
+    <func name="IsRenderTextureValid" return_type="bool">
+      <param name="target" type="RenderTexture2D"/>
+    </func>
+    <func name="UnloadRenderTexture" return_type="void">
+      <param name="target" type="RenderTexture2D"/>
+    </func>
+    <func name="UpdateTexture" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="pixels" type="const void*" length="1 /* TODO: Specify length for pixels */"/>
+    </func>
+    <func name="UpdateTextureRec" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="rec" type="Rectangle"/>
+      <param name="pixels" type="const void*" length="1 /* TODO: Specify length for pixels */"/>
+    </func>
+    <func name="GenTextureMipmaps" return_type="void">
+      <param name="texture" type="Texture2D*" length="1 /* TODO: Specify length for texture */"/>
+    </func>
+    <func name="SetTextureFilter" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="filter" type="int"/>
+    </func>
+    <func name="SetTextureWrap" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="wrap" type="int"/>
+    </func>
+    <func name="DrawTexture" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTextureV" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="position" type="Vector2"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTextureEx" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="position" type="Vector2"/>
+      <param name="rotation" type="float"/>
+      <param name="scale" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTextureRec" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="source" type="Rectangle"/>
+      <param name="position" type="Vector2"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTexturePro" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="source" type="Rectangle"/>
+      <param name="dest" type="Rectangle"/>
+      <param name="origin" type="Vector2"/>
+      <param name="rotation" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTextureNPatch" return_type="void">
+      <param name="texture" type="Texture2D"/>
+      <param name="nPatchInfo" type="NPatchInfo"/>
+      <param name="dest" type="Rectangle"/>
+      <param name="origin" type="Vector2"/>
+      <param name="rotation" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="ColorIsEqual" return_type="bool">
+      <param name="col1" type="Color"/>
+      <param name="col2" type="Color"/>
+    </func>
+    <func name="Fade" return_type="Color">
+      <param name="color" type="Color"/>
+      <param name="alpha" type="float"/>
+    </func>
+    <func name="ColorToInt" return_type="int">
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ColorNormalize" return_type="Vector4">
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ColorFromNormalized" return_type="Color">
+      <param name="normalized" type="Vector4"/>
+    </func>
+    <func name="ColorToHSV" return_type="Vector3">
+      <param name="color" type="Color"/>
+    </func>
+    <func name="ColorFromHSV" return_type="Color">
+      <param name="hue" type="float"/>
+      <param name="saturation" type="float"/>
+      <param name="value" type="float"/>
+    </func>
+    <func name="ColorTint" return_type="Color">
+      <param name="color" type="Color"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="ColorBrightness" return_type="Color">
+      <param name="color" type="Color"/>
+      <param name="factor" type="float"/>
+    </func>
+    <func name="ColorContrast" return_type="Color">
+      <param name="color" type="Color"/>
+      <param name="contrast" type="float"/>
+    </func>
+    <func name="ColorAlpha" return_type="Color">
+      <param name="color" type="Color"/>
+      <param name="alpha" type="float"/>
+    </func>
+    <func name="ColorAlphaBlend" return_type="Color">
+      <param name="dst" type="Color"/>
+      <param name="src" type="Color"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="ColorLerp" return_type="Color">
+      <param name="color1" type="Color"/>
+      <param name="color2" type="Color"/>
+      <param name="factor" type="float"/>
+    </func>
+    <func name="GetColor" return_type="Color">
+      <param name="hexValue" type="unsigned int"/>
+    </func>
+    <func name="GetPixelColor" return_type="Color">
+      <param name="srcPtr" type="void*" length="1 /* TODO: Specify length for srcPtr */"/>
+      <param name="format" type="int"/>
+    </func>
+    <func name="SetPixelColor" return_type="void">
+      <param name="dstPtr" type="void*" length="1 /* TODO: Specify length for dstPtr */"/>
+      <param name="color" type="Color"/>
+      <param name="format" type="int"/>
+    </func>
+    <func name="GetPixelDataSize" return_type="int">
+      <param name="width" type="int"/>
+      <param name="height" type="int"/>
+      <param name="format" type="int"/>
+    </func>
+    <func name="GetFontDefault" return_type="Font"/>
+    <func name="LoadFont" return_type="Font">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadFontEx" return_type="Font">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+      <param name="fontSize" type="int"/>
+      <param name="codepoints" type="const int*" length="1 /* TODO: Specify length for codepoints */"/>
+      <param name="codepointCount" type="int"/>
+    </func>
+    <func name="LoadFontFromImage" return_type="Font">
+      <param name="image" type="Image"/>
+      <param name="key" type="Color"/>
+      <param name="firstChar" type="int"/>
+    </func>
+    <func name="LoadFontFromMemory" return_type="Font">
+      <param name="fileType" type="const char*" length="null_terminated"/>
+      <param name="fileData" type="const unsigned char*" length="1 /* TODO: Specify length for fileData */"/>
+      <param name="dataSize" type="int"/>
+      <param name="fontSize" type="int"/>
+      <param name="codepoints" type="const int*" length="1 /* TODO: Specify length for codepoints */"/>
+      <param name="codepointCount" type="int"/>
+    </func>
+    <func name="IsFontValid" return_type="bool">
+      <param name="font" type="Font"/>
+    </func>
+    <func name="GenImageFontAtlas" return_type="Image">
+      <param name="glyphs" type="const GlyphInfo*" length="1 /* TODO: Specify length for glyphs */"/>
+      <param name="glyphRecs" type="Rectangle**"/>
+      <param name="glyphCount" type="int"/>
+      <param name="fontSize" type="int"/>
+      <param name="padding" type="int"/>
+      <param name="packMethod" type="int"/>
+    </func>
+    <func name="UnloadFontData" return_type="void">
+      <param name="glyphs" type="GlyphInfo*" length="1 /* TODO: Specify length for glyphs */"/>
+      <param name="glyphCount" type="int"/>
+    </func>
+    <func name="UnloadFont" return_type="void">
+      <param name="font" type="Font"/>
+    </func>
+    <func name="ExportFontAsCode" return_type="bool">
+      <param name="font" type="Font"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="DrawFPS" return_type="void">
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+    </func>
+    <func name="DrawText" return_type="void">
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="posX" type="int"/>
+      <param name="posY" type="int"/>
+      <param name="fontSize" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawTextEx" return_type="void">
+      <param name="font" type="Font"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="position" type="Vector2"/>
+      <param name="fontSize" type="float"/>
+      <param name="spacing" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTextPro" return_type="void">
+      <param name="font" type="Font"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="position" type="Vector2"/>
+      <param name="origin" type="Vector2"/>
+      <param name="rotation" type="float"/>
+      <param name="fontSize" type="float"/>
+      <param name="spacing" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTextCodepoint" return_type="void">
+      <param name="font" type="Font"/>
+      <param name="codepoint" type="int"/>
+      <param name="position" type="Vector2"/>
+      <param name="fontSize" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawTextCodepoints" return_type="void">
+      <param name="font" type="Font"/>
+      <param name="codepoints" type="const int*" length="1 /* TODO: Specify length for codepoints */"/>
+      <param name="codepointCount" type="int"/>
+      <param name="position" type="Vector2"/>
+      <param name="fontSize" type="float"/>
+      <param name="spacing" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="SetTextLineSpacing" return_type="void">
+      <param name="spacing" type="int"/>
+    </func>
+    <func name="MeasureText" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="fontSize" type="int"/>
+    </func>
+    <func name="MeasureTextEx" return_type="Vector2">
+      <param name="font" type="Font"/>
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="fontSize" type="float"/>
+      <param name="spacing" type="float"/>
+    </func>
+    <func name="GetGlyphIndex" return_type="int">
+      <param name="font" type="Font"/>
+      <param name="codepoint" type="int"/>
+    </func>
+    <func name="GetGlyphInfo" return_type="GlyphInfo">
+      <param name="font" type="Font"/>
+      <param name="codepoint" type="int"/>
+    </func>
+    <func name="GetGlyphAtlasRec" return_type="Rectangle">
+      <param name="font" type="Font"/>
+      <param name="codepoint" type="int"/>
+    </func>
+    <func name="UnloadUTF8" return_type="void">
+      <param name="text" type="char*" length="null_terminated"/>
+    </func>
+    <func name="UnloadCodepoints" return_type="void">
+      <param name="codepoints" type="int*" length="1 /* TODO: Specify length for codepoints */"/>
+    </func>
+    <func name="GetCodepointCount" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="GetCodepoint" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="codepointSize" type="int*" length="1 /* TODO: Specify length for codepointSize */"/>
+    </func>
+    <func name="GetCodepointNext" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="codepointSize" type="int*" length="1 /* TODO: Specify length for codepointSize */"/>
+    </func>
+    <func name="GetCodepointPrevious" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="codepointSize" type="int*" length="1 /* TODO: Specify length for codepointSize */"/>
+    </func>
+    <func name="UnloadTextLines" return_type="void">
+      <param name="text" type="char**"/>
+      <param name="lineCount" type="int"/>
+    </func>
+    <func name="TextCopy" return_type="int">
+      <param name="dst" type="char*" length="null_terminated"/>
+      <param name="src" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="TextIsEqual" return_type="bool">
+      <param name="text1" type="const char*" length="null_terminated"/>
+      <param name="text2" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="TextLength" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="TextAppend" return_type="void">
+      <param name="text" type="char*" length="null_terminated"/>
+      <param name="append" type="const char*" length="null_terminated"/>
+      <param name="position" type="int*" length="1 /* TODO: Specify length for position */"/>
+    </func>
+    <func name="TextFindIndex" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+      <param name="find" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="TextToInteger" return_type="int">
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="TextToFloat" return_type="float">
+      <param name="text" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="DrawLine3D" return_type="void">
+      <param name="startPos" type="Vector3"/>
+      <param name="endPos" type="Vector3"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawPoint3D" return_type="void">
+      <param name="position" type="Vector3"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCircle3D" return_type="void">
+      <param name="center" type="Vector3"/>
+      <param name="radius" type="float"/>
+      <param name="rotationAxis" type="Vector3"/>
+      <param name="rotationAngle" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawTriangle3D" return_type="void">
+      <param name="v1" type="Vector3"/>
+      <param name="v2" type="Vector3"/>
+      <param name="v3" type="Vector3"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawTriangleStrip3D" return_type="void">
+      <param name="points" type="const Vector3*" length="1 /* TODO: Specify length for points */"/>
+      <param name="pointCount" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCube" return_type="void">
+      <param name="position" type="Vector3"/>
+      <param name="width" type="float"/>
+      <param name="height" type="float"/>
+      <param name="length" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCubeV" return_type="void">
+      <param name="position" type="Vector3"/>
+      <param name="size" type="Vector3"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCubeWires" return_type="void">
+      <param name="position" type="Vector3"/>
+      <param name="width" type="float"/>
+      <param name="height" type="float"/>
+      <param name="length" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCubeWiresV" return_type="void">
+      <param name="position" type="Vector3"/>
+      <param name="size" type="Vector3"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSphere" return_type="void">
+      <param name="centerPos" type="Vector3"/>
+      <param name="radius" type="float"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSphereEx" return_type="void">
+      <param name="centerPos" type="Vector3"/>
+      <param name="radius" type="float"/>
+      <param name="rings" type="int"/>
+      <param name="slices" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawSphereWires" return_type="void">
+      <param name="centerPos" type="Vector3"/>
+      <param name="radius" type="float"/>
+      <param name="rings" type="int"/>
+      <param name="slices" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCylinder" return_type="void">
+      <param name="position" type="Vector3"/>
+      <param name="radiusTop" type="float"/>
+      <param name="radiusBottom" type="float"/>
+      <param name="height" type="float"/>
+      <param name="slices" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCylinderEx" return_type="void">
+      <param name="startPos" type="Vector3"/>
+      <param name="endPos" type="Vector3"/>
+      <param name="startRadius" type="float"/>
+      <param name="endRadius" type="float"/>
+      <param name="sides" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCylinderWires" return_type="void">
+      <param name="position" type="Vector3"/>
+      <param name="radiusTop" type="float"/>
+      <param name="radiusBottom" type="float"/>
+      <param name="height" type="float"/>
+      <param name="slices" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCylinderWiresEx" return_type="void">
+      <param name="startPos" type="Vector3"/>
+      <param name="endPos" type="Vector3"/>
+      <param name="startRadius" type="float"/>
+      <param name="endRadius" type="float"/>
+      <param name="sides" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCapsule" return_type="void">
+      <param name="startPos" type="Vector3"/>
+      <param name="endPos" type="Vector3"/>
+      <param name="radius" type="float"/>
+      <param name="slices" type="int"/>
+      <param name="rings" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawCapsuleWires" return_type="void">
+      <param name="startPos" type="Vector3"/>
+      <param name="endPos" type="Vector3"/>
+      <param name="radius" type="float"/>
+      <param name="slices" type="int"/>
+      <param name="rings" type="int"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawPlane" return_type="void">
+      <param name="centerPos" type="Vector3"/>
+      <param name="size" type="Vector2"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawRay" return_type="void">
+      <param name="ray" type="Ray"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawGrid" return_type="void">
+      <param name="slices" type="int"/>
+      <param name="spacing" type="float"/>
+    </func>
+    <func name="LoadModel" return_type="Model">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadModelFromMesh" return_type="Model">
+      <param name="mesh" type="Mesh"/>
+    </func>
+    <func name="IsModelValid" return_type="bool">
+      <param name="model" type="Model"/>
+    </func>
+    <func name="UnloadModel" return_type="void">
+      <param name="model" type="Model"/>
+    </func>
+    <func name="GetModelBoundingBox" return_type="BoundingBox">
+      <param name="model" type="Model"/>
+    </func>
+    <func name="DrawModel" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="position" type="Vector3"/>
+      <param name="scale" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawModelEx" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="position" type="Vector3"/>
+      <param name="rotationAxis" type="Vector3"/>
+      <param name="rotationAngle" type="float"/>
+      <param name="scale" type="Vector3"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawModelWires" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="position" type="Vector3"/>
+      <param name="scale" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawModelWiresEx" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="position" type="Vector3"/>
+      <param name="rotationAxis" type="Vector3"/>
+      <param name="rotationAngle" type="float"/>
+      <param name="scale" type="Vector3"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawModelPoints" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="position" type="Vector3"/>
+      <param name="scale" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawModelPointsEx" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="position" type="Vector3"/>
+      <param name="rotationAxis" type="Vector3"/>
+      <param name="rotationAngle" type="float"/>
+      <param name="scale" type="Vector3"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawBoundingBox" return_type="void">
+      <param name="box" type="BoundingBox"/>
+      <param name="color" type="Color"/>
+    </func>
+    <func name="DrawBillboard" return_type="void">
+      <param name="camera" type="Camera"/>
+      <param name="texture" type="Texture2D"/>
+      <param name="position" type="Vector3"/>
+      <param name="scale" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawBillboardRec" return_type="void">
+      <param name="camera" type="Camera"/>
+      <param name="texture" type="Texture2D"/>
+      <param name="source" type="Rectangle"/>
+      <param name="position" type="Vector3"/>
+      <param name="size" type="Vector2"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="DrawBillboardPro" return_type="void">
+      <param name="camera" type="Camera"/>
+      <param name="texture" type="Texture2D"/>
+      <param name="source" type="Rectangle"/>
+      <param name="position" type="Vector3"/>
+      <param name="up" type="Vector3"/>
+      <param name="size" type="Vector2"/>
+      <param name="origin" type="Vector2"/>
+      <param name="rotation" type="float"/>
+      <param name="tint" type="Color"/>
+    </func>
+    <func name="UploadMesh" return_type="void">
+      <param name="mesh" type="Mesh*" length="1 /* TODO: Specify length for mesh */"/>
+      <param name="dynamic" type="bool"/>
+    </func>
+    <func name="UpdateMeshBuffer" return_type="void">
+      <param name="mesh" type="Mesh"/>
+      <param name="index" type="int"/>
+      <param name="data" type="const void*" length="1 /* TODO: Specify length for data */"/>
+      <param name="dataSize" type="int"/>
+      <param name="offset" type="int"/>
+    </func>
+    <func name="UnloadMesh" return_type="void">
+      <param name="mesh" type="Mesh"/>
+    </func>
+    <func name="DrawMesh" return_type="void">
+      <param name="mesh" type="Mesh"/>
+      <param name="material" type="Material"/>
+      <param name="transform" type="Matrix"/>
+    </func>
+    <func name="DrawMeshInstanced" return_type="void">
+      <param name="mesh" type="Mesh"/>
+      <param name="material" type="Material"/>
+      <param name="transforms" type="const Matrix*" length="1 /* TODO: Specify length for transforms */"/>
+      <param name="instances" type="int"/>
+    </func>
+    <func name="GetMeshBoundingBox" return_type="BoundingBox">
+      <param name="mesh" type="Mesh"/>
+    </func>
+    <func name="GenMeshTangents" return_type="void">
+      <param name="mesh" type="Mesh*" length="1 /* TODO: Specify length for mesh */"/>
+    </func>
+    <func name="ExportMesh" return_type="bool">
+      <param name="mesh" type="Mesh"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="ExportMeshAsCode" return_type="bool">
+      <param name="mesh" type="Mesh"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="GenMeshPoly" return_type="Mesh">
+      <param name="sides" type="int"/>
+      <param name="radius" type="float"/>
+    </func>
+    <func name="GenMeshPlane" return_type="Mesh">
+      <param name="width" type="float"/>
+      <param name="length" type="float"/>
+      <param name="resX" type="int"/>
+      <param name="resZ" type="int"/>
+    </func>
+    <func name="GenMeshCube" return_type="Mesh">
+      <param name="width" type="float"/>
+      <param name="height" type="float"/>
+      <param name="length" type="float"/>
+    </func>
+    <func name="GenMeshSphere" return_type="Mesh">
+      <param name="radius" type="float"/>
+      <param name="rings" type="int"/>
+      <param name="slices" type="int"/>
+    </func>
+    <func name="GenMeshHemiSphere" return_type="Mesh">
+      <param name="radius" type="float"/>
+      <param name="rings" type="int"/>
+      <param name="slices" type="int"/>
+    </func>
+    <func name="GenMeshCylinder" return_type="Mesh">
+      <param name="radius" type="float"/>
+      <param name="height" type="float"/>
+      <param name="slices" type="int"/>
+    </func>
+    <func name="GenMeshCone" return_type="Mesh">
+      <param name="radius" type="float"/>
+      <param name="height" type="float"/>
+      <param name="slices" type="int"/>
+    </func>
+    <func name="GenMeshTorus" return_type="Mesh">
+      <param name="radius" type="float"/>
+      <param name="size" type="float"/>
+      <param name="radSeg" type="int"/>
+      <param name="sides" type="int"/>
+    </func>
+    <func name="GenMeshKnot" return_type="Mesh">
+      <param name="radius" type="float"/>
+      <param name="size" type="float"/>
+      <param name="radSeg" type="int"/>
+      <param name="sides" type="int"/>
+    </func>
+    <func name="GenMeshHeightmap" return_type="Mesh">
+      <param name="heightmap" type="Image"/>
+      <param name="size" type="Vector3"/>
+    </func>
+    <func name="GenMeshCubicmap" return_type="Mesh">
+      <param name="cubicmap" type="Image"/>
+      <param name="cubeSize" type="Vector3"/>
+    </func>
+    <func name="LoadMaterialDefault" return_type="Material"/>
+    <func name="IsMaterialValid" return_type="bool">
+      <param name="material" type="Material"/>
+    </func>
+    <func name="UnloadMaterial" return_type="void">
+      <param name="material" type="Material"/>
+    </func>
+    <func name="SetMaterialTexture" return_type="void">
+      <param name="material" type="Material*" length="1 /* TODO: Specify length for material */"/>
+      <param name="mapType" type="int"/>
+      <param name="texture" type="Texture2D"/>
+    </func>
+    <func name="SetModelMeshMaterial" return_type="void">
+      <param name="model" type="Model*" length="1 /* TODO: Specify length for model */"/>
+      <param name="meshId" type="int"/>
+      <param name="materialId" type="int"/>
+    </func>
+    <func name="UpdateModelAnimation" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="anim" type="ModelAnimation"/>
+      <param name="frame" type="int"/>
+    </func>
+    <func name="UpdateModelAnimationBones" return_type="void">
+      <param name="model" type="Model"/>
+      <param name="anim" type="ModelAnimation"/>
+      <param name="frame" type="int"/>
+    </func>
+    <func name="UnloadModelAnimation" return_type="void">
+      <param name="anim" type="ModelAnimation"/>
+    </func>
+    <func name="UnloadModelAnimations" return_type="void">
+      <param name="animations" type="ModelAnimation*" length="1 /* TODO: Specify length for animations */"/>
+      <param name="animCount" type="int"/>
+    </func>
+    <func name="IsModelAnimationValid" return_type="bool">
+      <param name="model" type="Model"/>
+      <param name="anim" type="ModelAnimation"/>
+    </func>
+    <func name="CheckCollisionSpheres" return_type="bool">
+      <param name="center1" type="Vector3"/>
+      <param name="radius1" type="float"/>
+      <param name="center2" type="Vector3"/>
+      <param name="radius2" type="float"/>
+    </func>
+    <func name="CheckCollisionBoxes" return_type="bool">
+      <param name="box1" type="BoundingBox"/>
+      <param name="box2" type="BoundingBox"/>
+    </func>
+    <func name="CheckCollisionBoxSphere" return_type="bool">
+      <param name="box" type="BoundingBox"/>
+      <param name="center" type="Vector3"/>
+      <param name="radius" type="float"/>
+    </func>
+    <func name="GetRayCollisionSphere" return_type="RayCollision">
+      <param name="ray" type="Ray"/>
+      <param name="center" type="Vector3"/>
+      <param name="radius" type="float"/>
+    </func>
+    <func name="GetRayCollisionBox" return_type="RayCollision">
+      <param name="ray" type="Ray"/>
+      <param name="box" type="BoundingBox"/>
+    </func>
+    <func name="GetRayCollisionMesh" return_type="RayCollision">
+      <param name="ray" type="Ray"/>
+      <param name="mesh" type="Mesh"/>
+      <param name="transform" type="Matrix"/>
+    </func>
+    <func name="GetRayCollisionTriangle" return_type="RayCollision">
+      <param name="ray" type="Ray"/>
+      <param name="p1" type="Vector3"/>
+      <param name="p2" type="Vector3"/>
+      <param name="p3" type="Vector3"/>
+    </func>
+    <func name="GetRayCollisionQuad" return_type="RayCollision">
+      <param name="ray" type="Ray"/>
+      <param name="p1" type="Vector3"/>
+      <param name="p2" type="Vector3"/>
+      <param name="p3" type="Vector3"/>
+      <param name="p4" type="Vector3"/>
+    </func>
+    <func name="InitAudioDevice" return_type="void"/>
+    <func name="CloseAudioDevice" return_type="void"/>
+    <func name="IsAudioDeviceReady" return_type="bool"/>
+    <func name="SetMasterVolume" return_type="void">
+      <param name="volume" type="float"/>
+    </func>
+    <func name="GetMasterVolume" return_type="float"/>
+    <func name="LoadWave" return_type="Wave">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadWaveFromMemory" return_type="Wave">
+      <param name="fileType" type="const char*" length="null_terminated"/>
+      <param name="fileData" type="const unsigned char*" length="1 /* TODO: Specify length for fileData */"/>
+      <param name="dataSize" type="int"/>
+    </func>
+    <func name="IsWaveValid" return_type="bool">
+      <param name="wave" type="Wave"/>
+    </func>
+    <func name="LoadSound" return_type="Sound">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadSoundFromWave" return_type="Sound">
+      <param name="wave" type="Wave"/>
+    </func>
+    <func name="LoadSoundAlias" return_type="Sound">
+      <param name="source" type="Sound"/>
+    </func>
+    <func name="IsSoundValid" return_type="bool">
+      <param name="sound" type="Sound"/>
+    </func>
+    <func name="UpdateSound" return_type="void">
+      <param name="sound" type="Sound"/>
+      <param name="data" type="const void*" length="1 /* TODO: Specify length for data */"/>
+      <param name="sampleCount" type="int"/>
+    </func>
+    <func name="UnloadWave" return_type="void">
+      <param name="wave" type="Wave"/>
+    </func>
+    <func name="UnloadSound" return_type="void">
+      <param name="sound" type="Sound"/>
+    </func>
+    <func name="UnloadSoundAlias" return_type="void">
+      <param name="alias" type="Sound"/>
+    </func>
+    <func name="ExportWave" return_type="bool">
+      <param name="wave" type="Wave"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="ExportWaveAsCode" return_type="bool">
+      <param name="wave" type="Wave"/>
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="PlaySound" return_type="void">
+      <param name="sound" type="Sound"/>
+    </func>
+    <func name="StopSound" return_type="void">
+      <param name="sound" type="Sound"/>
+    </func>
+    <func name="PauseSound" return_type="void">
+      <param name="sound" type="Sound"/>
+    </func>
+    <func name="ResumeSound" return_type="void">
+      <param name="sound" type="Sound"/>
+    </func>
+    <func name="IsSoundPlaying" return_type="bool">
+      <param name="sound" type="Sound"/>
+    </func>
+    <func name="SetSoundVolume" return_type="void">
+      <param name="sound" type="Sound"/>
+      <param name="volume" type="float"/>
+    </func>
+    <func name="SetSoundPitch" return_type="void">
+      <param name="sound" type="Sound"/>
+      <param name="pitch" type="float"/>
+    </func>
+    <func name="SetSoundPan" return_type="void">
+      <param name="sound" type="Sound"/>
+      <param name="pan" type="float"/>
+    </func>
+    <func name="WaveCopy" return_type="Wave">
+      <param name="wave" type="Wave"/>
+    </func>
+    <func name="WaveCrop" return_type="void">
+      <param name="wave" type="Wave*" length="1 /* TODO: Specify length for wave */"/>
+      <param name="initFrame" type="int"/>
+      <param name="finalFrame" type="int"/>
+    </func>
+    <func name="WaveFormat" return_type="void">
+      <param name="wave" type="Wave*" length="1 /* TODO: Specify length for wave */"/>
+      <param name="sampleRate" type="int"/>
+      <param name="sampleSize" type="int"/>
+      <param name="channels" type="int"/>
+    </func>
+    <func name="UnloadWaveSamples" return_type="void">
+      <param name="samples" type="float*" length="1 /* TODO: Specify length for samples */"/>
+    </func>
+    <func name="LoadMusicStream" return_type="Music">
+      <param name="fileName" type="const char*" length="null_terminated"/>
+    </func>
+    <func name="LoadMusicStreamFromMemory" return_type="Music">
+      <param name="fileType" type="const char*" length="null_terminated"/>
+      <param name="data" type="const unsigned char*" length="1 /* TODO: Specify length for data */"/>
+      <param name="dataSize" type="int"/>
+    </func>
+    <func name="IsMusicValid" return_type="bool">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="UnloadMusicStream" return_type="void">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="PlayMusicStream" return_type="void">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="IsMusicStreamPlaying" return_type="bool">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="UpdateMusicStream" return_type="void">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="StopMusicStream" return_type="void">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="PauseMusicStream" return_type="void">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="ResumeMusicStream" return_type="void">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="SeekMusicStream" return_type="void">
+      <param name="music" type="Music"/>
+      <param name="position" type="float"/>
+    </func>
+    <func name="SetMusicVolume" return_type="void">
+      <param name="music" type="Music"/>
+      <param name="volume" type="float"/>
+    </func>
+    <func name="SetMusicPitch" return_type="void">
+      <param name="music" type="Music"/>
+      <param name="pitch" type="float"/>
+    </func>
+    <func name="SetMusicPan" return_type="void">
+      <param name="music" type="Music"/>
+      <param name="pan" type="float"/>
+    </func>
+    <func name="GetMusicTimeLength" return_type="float">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="GetMusicTimePlayed" return_type="float">
+      <param name="music" type="Music"/>
+    </func>
+    <func name="LoadAudioStream" return_type="AudioStream">
+      <param name="sampleRate" type="unsigned int"/>
+      <param name="sampleSize" type="unsigned int"/>
+      <param name="channels" type="unsigned int"/>
+    </func>
+    <func name="IsAudioStreamValid" return_type="bool">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="UnloadAudioStream" return_type="void">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="UpdateAudioStream" return_type="void">
+      <param name="stream" type="AudioStream"/>
+      <param name="data" type="const void*" length="1 /* TODO: Specify length for data */"/>
+      <param name="frameCount" type="int"/>
+    </func>
+    <func name="IsAudioStreamProcessed" return_type="bool">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="PlayAudioStream" return_type="void">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="PauseAudioStream" return_type="void">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="ResumeAudioStream" return_type="void">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="IsAudioStreamPlaying" return_type="bool">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="StopAudioStream" return_type="void">
+      <param name="stream" type="AudioStream"/>
+    </func>
+    <func name="SetAudioStreamVolume" return_type="void">
+      <param name="stream" type="AudioStream"/>
+      <param name="volume" type="float"/>
+    </func>
+    <func name="SetAudioStreamPitch" return_type="void">
+      <param name="stream" type="AudioStream"/>
+      <param name="pitch" type="float"/>
+    </func>
+    <func name="SetAudioStreamPan" return_type="void">
+      <param name="stream" type="AudioStream"/>
+      <param name="pan" type="float"/>
+    </func>
+    <func name="SetAudioStreamBufferSizeDefault" return_type="void">
+      <param name="size" type="int"/>
+    </func>
+    <func name="SetAudioStreamCallback" return_type="void">
+      <param name="stream" type="AudioStream"/>
+      <param name="callback" type="AudioCallback"/>
+    </func>
+    <func name="AttachAudioStreamProcessor" return_type="void">
+      <param name="stream" type="AudioStream"/>
+      <param name="processor" type="AudioCallback"/>
+    </func>
+    <func name="DetachAudioStreamProcessor" return_type="void">
+      <param name="stream" type="AudioStream"/>
+      <param name="processor" type="AudioCallback"/>
+    </func>
+    <func name="AttachAudioMixedProcessor" return_type="void">
+      <param name="processor" type="AudioCallback"/>
+    </func>
+    <func name="DetachAudioMixedProcessor" return_type="void">
+      <param name="processor" type="AudioCallback"/>
+    </func>
+  </module>
+</api>

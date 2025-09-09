@@ -1,0 +1,31 @@
+@echo off
+REM Example script to run raylib tracing demo
+
+echo Running raylib tracing example...
+echo.
+
+REM Run in capture mode
+echo === CAPTURE MODE ===
+echo Running raylib_test in capture mode...
+@CMAKE_BINARY_DIR@\bin\raylib_test.exe capture trace.bin
+if %errorlevel% neq 0 (
+    echo X Capture failed
+    exit /b 1
+) else (
+    echo √ Capture completed successfully
+    for %%A in (trace.bin) do echo Trace file size: %%~zA bytes
+)
+
+echo.
+echo === REPLAY MODE ===
+echo Running raylib_test in replay mode...
+@CMAKE_BINARY_DIR@\bin\raylib_test.exe replay trace.bin
+if %errorlevel% neq 0 (
+    echo X Replay failed
+    exit /b 1
+) else (
+    echo √ Replay completed successfully
+)
+
+echo.
+echo Demo completed successfully!

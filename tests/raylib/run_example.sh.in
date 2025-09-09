@@ -1,0 +1,31 @@
+#!/bin/bash
+# Example script to run raylib tracing demo
+
+echo "Running raylib tracing example..."
+echo
+
+# Run in capture mode
+echo "=== CAPTURE MODE ==="
+echo "Running raylib_test in capture mode..."
+@CMAKE_BINARY_DIR@/bin/raylib_test capture trace.bin
+if [ $? -eq 0 ]; then
+    echo "✓ Capture completed successfully"
+    echo "Trace file size: $(stat -f%z trace.bin 2>/dev/null || stat -c%s trace.bin) bytes"
+else
+    echo "✗ Capture failed"
+    exit 1
+fi
+
+echo
+echo "=== REPLAY MODE ==="
+echo "Running raylib_test in replay mode..."
+@CMAKE_BINARY_DIR@/bin/raylib_test replay trace.bin
+if [ $? -eq 0 ]; then
+    echo "✓ Replay completed successfully"
+else
+    echo "✗ Replay failed"
+    exit 1
+fi
+
+echo
+echo "Demo completed successfully!"
