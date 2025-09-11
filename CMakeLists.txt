@@ -20,36 +20,10 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
 endif()
 
 # Create trace library
-add_library(trace STATIC
-    trace.cpp
-    trace.h
-    trace_internal.h
-    trace_file.h
-)
 
-target_include_directories(trace PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Add examples subdirectory
+add_subdirectory(app)
+add_subdirectory(external/raylib)
 add_subdirectory(tests/raylib)
 
-# Install targets
-install(TARGETS trace
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
-)
-
-install(FILES
-    trace.h
-    trace_internal.h
-    trace_file.h
-    DESTINATION include
-)
-
-# Install Python tools
-install(FILES
-    generate_xml.py
-    generate_c.py
-    DESTINATION tools
-    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-)

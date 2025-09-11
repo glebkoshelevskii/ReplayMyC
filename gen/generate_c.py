@@ -243,7 +243,7 @@ def generate_init_cpp(api):
     import hashlib
     api_id = int(hashlib.md5(api_name.encode()).hexdigest()[:8], 16)
     
-    init_cpp = f'#include "trace_internal.h"\n'
+    init_cpp = f'#include "rmc_internal.h"\n'
     init_cpp += f'#include "{api_name}_deserialization.h"\n\n'
     init_cpp += f'// Auto-generated initialization for {api_name}\n'
     init_cpp += f'void dispatch_{api_name}_function_call(uint64_t function_id, const uint8_t* buffer, uint64_t buffer_size);\n\n'
@@ -285,7 +285,7 @@ def generate_code(api):
     serialization_h = f"#ifndef {api_name.upper()}_SERIALIZATION_H\n#define {api_name.upper()}_SERIALIZATION_H\n\n"
     serialization_h += "#include <vector>\n#include <cstdint>\n#include <cstring>\n"
     serialization_h += f"#include \"{api['header']}\"\n"
-    serialization_h += "#include \"trace_internal.h\"\n\n"
+    serialization_h += "#include \"rmc_internal.h\"\n\n"
     
     for s in api['structs']:
         serialization_h += f"void serialize_{s['name']}(const {s['name']}& s);\n"
@@ -306,7 +306,7 @@ def generate_code(api):
     deserialization_h = f"#ifndef {api_name.upper()}_DESERIALIZATION_H\n#define {api_name.upper()}_DESERIALIZATION_H\n\n"
     deserialization_h += "#include <vector>\n#include <cstdint>\n#include <cstring>\n"
     deserialization_h += f"#include \"{api['header']}\"\n"
-    deserialization_h += "#include \"trace_internal.h\"\n\n"
+    deserialization_h += "#include \"rmc_internal.h\"\n\n"
 
     for s in api['structs']:
         deserialization_h += f"{s['name']} deserialize_{s['name']}();\n"

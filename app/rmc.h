@@ -14,6 +14,10 @@ typedef struct {
     const char* description;
 } rmc_result_t;
 
+typedef struct {
+    rmc_mode_t mode;
+    const char* filename;
+} rmc_config_t;
 
 rmc_result_t rmc_init(rmc_mode_t mode, const char* filename);
 rmc_result_t rmc_deinit(void);

@@ -1,4 +1,4 @@
-#include "trace_internal.h"
+#include "rmc_internal.h"
 #include "raylib_deserialization.h"
 
 // Auto-generated initialization for raylib
@@ -12,7 +12,7 @@ rmc_result_t init_raylib() {
     }
 
     SystemInfo system_info;
-    system_info.api_id = 2;
+    system_info.api_id = 1215888600U;
     system_info.name = "raylib";
     system_info.description = "Auto-generated raylib tracing API";
     system_info.dispatch_func = dispatch_raylib_function_call;

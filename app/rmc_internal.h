@@ -1,6 +1,6 @@
 #pragma once
-#include "trace.h"
-#include "trace_file.h"
+#include "rmc.h"
+#include "rmc_trace_file.h"
 #include <map>
 #include <vector>
 #include <cstdint>

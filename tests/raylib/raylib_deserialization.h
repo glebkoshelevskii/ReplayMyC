@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <cstring>
 #include "raylib.h"
-#include "trace_internal.h"
+#include "rmc_internal.h"
 
 Vector2 deserialize_Vector2();
 Vector3 deserialize_Vector3();

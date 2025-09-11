@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <cstring>
 #include "raylib.h"
-#include "trace_internal.h"
+#include "rmc_internal.h"
 
 void serialize_Vector2(const Vector2& s);
 void serialize_Vector3(const Vector3& s);
